@@ -18,6 +18,7 @@ function Provider({ children }) {
     dataFood,
   };
   // aloo teste
+  // alo teste 2
   return (
     <AppReceitaContext.Provider value={contextValue}>
       {children}

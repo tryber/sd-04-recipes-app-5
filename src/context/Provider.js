@@ -17,9 +17,7 @@ function Provider({ children }) {
   const contextValue = {
     dataFood,
   };
-  // aloo teste
-  // alo teste 2
-  // alo teste 3
+
   return (
     <AppReceitaContext.Provider value={contextValue}>
       {children}

@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  BrowserRouter,
+} from 'react-router-dom';
 import './App.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
@@ -6,9 +12,28 @@ import Login from './pages/Login';
 function App() {
   return (
     <div id="meals">
+      <span>App de receitas</span>
       <Provider>
-        <span>App de receitas</span>
-        <Login />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/bebidas/:id/in-progress" component={'Tela receita de bebida em progres'} />
+            <Route path="/comidas/:id/in-progress" component={'Tela receita de comida em progres'} />
+            <Route path="/bebidas/:id" component={'Tela detalhesBebidas'} />
+            <Route path="/comidas/:id" component={'Tela detalhesComida'} />
+            <Route path="/explorar/comidas/area" component={'Tela explorar comidas por area'} />
+            <Route path="/explorar/bebidas/ingredientes" component={'Tela explorar bebidas por ingredientes'} />
+            <Route path="/explorar/comidas/ingredientes" component={'Tela explorar comidas por ingredientes'} />
+            <Route path="/explorar/bebidas" component={'Tela explorar bebidas'} />
+            <Route path="/explorar/comidas" component={'Tela explorar comidas'} />
+            <Route path="/receitas-favoritas" component={'receitas-favoritas'} />
+            <Route path="/receitas-feitas" component={'Tela receitas feitas'} />
+            <Route path="/perfil" component={'Tela perfil'} />
+            <Route path="/explorar" component={'Tela explorar'} />
+            <Route path="/bebidas" component={'Tela bebidas'} />
+            <Route path="/comidas" component={'Tela comidas'} />
+            <Route exact path="/" component={Login} />
+          </Switch>
+        </BrowserRouter>
       </Provider>
     </div>
   );

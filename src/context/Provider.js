@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import AppReceitaContext from './AppReceitaContext';
+import fetchFoodApi from '../services/index';
 
 function Provider ({ children }) {
 
-  const [imagem, setImagem] = useState('');
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getFood().then((data) => setData(data.meals));
+  }, []);
+
+  const getFood = async () => {
+    const data = await fetchFoodApi();
+    return data;
+  }
 
   const contextValue = {
-    imagem,
+    data,
   }
 
   return (

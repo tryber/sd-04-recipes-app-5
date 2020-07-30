@@ -1,41 +1,20 @@
 import React from 'react';
 import './App.css';
+import Provider from './context/Provider';
+import Login from './pages/Login';
 
 function App() {
   return (
     <div id="meals">
-      <span>App de receitas</span>
-      
+      <Provider>
+        <span>App de receitas</span>
+        <Login />
+      </Provider>
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // <svg xmlns="http://www.w3.org/2000/svg" id="rocksGlass" viewBox="-8.233 -8.233 122.466 122.466" height="300px">
 //         <path d=" M 12.556 103 L 3 3 L 103 3 L 93.347 103 L 12.556 103 L 12.556 103 Z " fill="rgb(255,255,255)" vector-effect="non-scaling-stroke" stroke-width="5.616" stroke="rgb(70,70,70)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" />

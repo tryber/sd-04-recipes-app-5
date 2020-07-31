@@ -13,10 +13,10 @@ function Footer() {
           <img src={drinkIcon} alt="Icone de Bebida" />
         </Link>
         <Link to="/comidas">
-          <img src={mealIcon} alt="Icone de Comida"/>
+          <img src={mealIcon} alt="Icone de Comida" />
         </Link>
         <Link to="/explorar">
-          <img src={exploreIcon} alt="Icone de Explorar"/>
+          <img src={exploreIcon} alt="Icone de Explorar" />
         </Link>
       </footer>
     </div>

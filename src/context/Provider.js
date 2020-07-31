@@ -21,4 +21,4 @@ export default Provider;
 
 Provider.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};

@@ -5,10 +5,9 @@ import AppReceitaContext from '../context/AppReceitaContext';
 const useFoods = () => {
   const { dataFood, setDataFood } = useContext(AppReceitaContext);
 
-  //requisição API
   const getFood = async () => {
-    const dataFood = await fetchFoodApi();
-    return dataFood;
+    const data = await fetchFoodApi();
+    return data;
   };
 
   useEffect(() => {

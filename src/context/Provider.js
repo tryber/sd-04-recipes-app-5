@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AppReceitaContext from './AppReceitaContext';
 
 function Provider({ children }) {

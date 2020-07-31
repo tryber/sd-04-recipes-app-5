@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import AppReceitaContext from './AppReceitaContext';
 
 function Provider({ children }) {
@@ -17,3 +18,7 @@ function Provider({ children }) {
 }
 
 export default Provider;
+
+Provider.propTypes = {
+  children: PropTypes.element.isRequired,
+}

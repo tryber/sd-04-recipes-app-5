@@ -18,7 +18,7 @@ function Footer() {
         <Link to="/explorar">
           <img src={exploreIcon} />
         </Link>
-      </footer>      
+      </footer>
     </div>
   );
 }

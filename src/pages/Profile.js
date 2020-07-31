@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 
-function Food() {
+export function Food() {
   return (
     <div>
       <div className="Footer">

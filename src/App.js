@@ -2,18 +2,16 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Provider from './context/Provider';
-import {
-  Login,
-  Profile,
-  Drink,
-  Food,
-  Explore,
-  ExploreDrink,
-  ExploreDrinkExploreDrinkByIngredients,
-  ExploreFood,
-  ExploreFoodByArea,
-  ExploreFoodByIngredients,
-} from './pages';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Drink from './pages/Drink';
+import Food from './pages/Food';
+import Explore from './pages/Explore';
+import ExploreDrink from './pages/ExploreDrink';
+import ExploreDrinkByIngredients from './pages/ExploreDrinkByIngredients';
+import ExploreFood from './pages/ExploreFood';
+import ExploreFoodByArea from './pages/ExploreFoodByArea';
+import ExploreFoodByIngredients from './pages/ExploreFoodByIngredients';
 
 function App() {
   return (
@@ -38,7 +36,7 @@ function App() {
             />
             <Route
               path="/explorar/bebidas/ingredientes"
-              component={ExploreDrinkExploreDrinkByIngredients}
+              component={ExploreDrinkByIngredients}
             />
             <Route
               path="/explorar/comidas/ingredientes"

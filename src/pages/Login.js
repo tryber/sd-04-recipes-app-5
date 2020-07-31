@@ -9,7 +9,6 @@ function Login() {
 
   return (
     <div>
-      <Footer />
       {dataFood.length > 0 && dataFood.map((element) => <p>{element.meals}</p>)}
     </div>
   );

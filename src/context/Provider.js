@@ -4,6 +4,9 @@ import fetchFoodApi from '../services/index';
 
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
 
   useEffect(() => {
     getFood().then((data) => setDataFood(data.meals));
@@ -16,6 +19,12 @@ function Provider({ children }) {
 
   const contextValue = {
     dataFood,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isDisable,
+    setIsDisable
   };
 
   return (

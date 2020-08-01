@@ -2,8 +2,6 @@ import React from 'react';
 
 import useFoods from '../hooks/useFoods';
 
-import Footer from '../components/Footer';
-
 function Login() {
   const dataFood = useFoods();
 

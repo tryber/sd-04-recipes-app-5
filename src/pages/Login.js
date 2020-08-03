@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
-import AppReceitaContext from '../context/AppReceitaContext'
+import React from 'react';
 
-function LoginPage() {
-  const { data } = useContext(AppReceitaContext);
+import useFoods from '../hooks/useFoods';
+
+function Login() {
+  const dataFood = useFoods();
 
   return (
     <div>
-      {data.map((element) => <p>{element.strMeal}</p>)}
+      {dataFood.length > 0 && dataFood.map((element) => <p>{element.meals}</p>)}
     </div>
-  )
+  );
 }
 
-export default LoginPage;
+export default Login;

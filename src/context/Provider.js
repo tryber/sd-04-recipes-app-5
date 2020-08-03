@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import AppReceitaContext from './AppReceitaContext';
-import fetchFoodApi from '../services/index';
 
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
-
-  useEffect(() => {
-    getFood().then((data) => setDataFood(data.meals));
-  }, []);
-
-  const getFood = async () => {
-    const data = await fetchFoodApi();
-    return data;
-  };
+  const [idFood, setIdFood] = useState(null);
+  const [idDrink, setIdDrink] = useState(null);
 
   const contextValue = {
     dataFood,
+    setDataFood,
+    idFood,
+    setIdFood,
+    idDrink,
+    setIdDrink,
   };
 
   return (
@@ -26,3 +24,7 @@ function Provider({ children }) {
 }
 
 export default Provider;
+
+Provider.propTypes = {
+  children: PropTypes.element.isRequired,
+};

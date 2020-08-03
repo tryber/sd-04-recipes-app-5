@@ -9,16 +9,7 @@ function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-
-  useEffect(() => {
-    getFood().then((data) => setDataFood(data.meals));
-  }, []);
-
-  const getFood = async () => {
-    const data = await fetchFoodApi();
-    return data;
-  };
-
+  
   const contextValue = {
     dataFood,
     setDataFood,

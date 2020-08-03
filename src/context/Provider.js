@@ -9,7 +9,8 @@ function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  
+  const [isLogged, setIsLogged] = useState(false);
+
   const contextValue = {
     dataFood,
     setDataFood,
@@ -22,7 +23,9 @@ function Provider({ children }) {
     password,
     setPassword,
     isDisable,
-    setIsDisable
+    setIsDisable,
+    isLogged,
+    setIsLogged
   };
 
   return (

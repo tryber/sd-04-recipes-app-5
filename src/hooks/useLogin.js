@@ -10,15 +10,18 @@ export default function useLogin() {
     password,
     setPassword,
     isDisable,
-    setIsDisable
+    setIsDisable,
+    isLogged,
+    setIsLogged
   } = context;
 
   const validationFields = (email, password) => {
     const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regexPassword = /^[^W_]{6}$/;
+    const regexPassword = /^[^W_]{7,}$/;
     if (regexEmail.test(email) && regexPassword.test(password)) setIsDisable(false);
     else setIsDisable(true);
   };
+
   useEffect(() => {
     validationFields(email, password);
   }, [email, password]);
@@ -31,6 +34,8 @@ export default function useLogin() {
     password,
     setPassword,
     isDisable,
-    setIsDisable
+    setIsDisable,
+    isLogged,
+    setIsLogged
   };
 }

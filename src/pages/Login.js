@@ -1,10 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 const sendLocalStorage = (email) => {
   localStorage.setItem('mealsToken', JSON.stringify(1)); // alterar para os dados
   localStorage.setItem('cocktailsToken', JSON.stringify(1)); // alterar para os dados
-  localStorage.setItem('user', JSON.stringify(email));
+  localStorage.setItem('user', JSON.stringify({ email }));
 };
 
 export default function Login() {
@@ -14,8 +15,12 @@ export default function Login() {
     password,
     setPassword,
     isDisable,
+    isLogged,
+    setIsLogged
   } = useLogin();
 
+  if (isLogged) return (<Redirect to="/comidas" />);
+  
   return (
     <div>
       <h1>Login</h1>
@@ -41,14 +46,17 @@ export default function Login() {
             data-testid="password-input"
           />
           <small>
-            Must have 6 characters.
+            Must have more than 6 characters.
           </small>
         </fieldset>
         <button
           type="submit"
           disabled={isDisable}
           data-testid="login-submit-btn"
-          onClick={() => sendLocalStorage(email)}
+          onClick={() => {
+            sendLocalStorage(email)
+            setIsLogged(true);
+          }}
         >
           Login
         </button>

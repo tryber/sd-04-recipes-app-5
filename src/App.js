@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
 import './App.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';

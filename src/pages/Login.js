@@ -1,6 +1,12 @@
 import React from 'react';
 import useLogin from '../hooks/useLogin';
 
+const sendLocalStorage = (email) => {
+  localStorage.setItem('mealsToken', JSON.stringify(1)); // alterar para os dados
+  localStorage.setItem('cocktailsToken', JSON.stringify(1)); // alterar para os dados
+  localStorage.setItem('user', JSON.stringify(email));
+};
+
 export default function Login() {
   const {
     email,
@@ -8,14 +14,7 @@ export default function Login() {
     password,
     setPassword,
     isDisable,
-    /* setIsDisable */
   } = useLogin();
-
-  const sendLocalStorage = () => {
-    localStorage.setItem('mealsToken', JSON.stringify(1)); // alterar para os dados
-    localStorage.setItem('cocktailsToken', JSON.stringify(1)); // alterar para os dados
-    localStorage.setItem('user', JSON.stringify({ email }));
-  };
 
   return (
     <div>
@@ -49,7 +48,7 @@ export default function Login() {
           type="submit"
           disabled={isDisable}
           data-testid="login-submit-btn"
-          onClick={() => sendLocalStorage()}
+          onClick={() => sendLocalStorage(email)}
         >
           Login
         </button>

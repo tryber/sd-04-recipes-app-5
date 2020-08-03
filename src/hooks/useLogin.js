@@ -15,7 +15,7 @@ export default function useLogin() {
 
   const validationFields = (email, password) => {
     const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regexPassword = /^[^W_]{7}$/;
+    const regexPassword = /^[^W_]{6}$/;
     if (regexEmail.test(email) && regexPassword.test(password)) setIsDisable(false);
     else setIsDisable(true);
   };

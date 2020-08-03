@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import AppReceitaContext from './AppReceitaContext';
-import fetchFoodApi from '../services/index';
 
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
+  const [idFood, setIdFood] = useState(null);
+  const [idDrink, setIdDrink] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -19,6 +21,11 @@ function Provider({ children }) {
 
   const contextValue = {
     dataFood,
+    setDataFood,
+    idFood,
+    setIdFood,
+    idDrink,
+    setIdDrink,
     email,
     setEmail,
     password,
@@ -35,3 +42,7 @@ function Provider({ children }) {
 }
 
 export default Provider;
+
+Provider.propTypes = {
+  children: PropTypes.element.isRequired,
+};

@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
   const [idFood, setIdFood] = useState(null);
   const [idDrink, setIdDrink] = useState(null);
+  const [recipe, setRecipe] = useState(null);
 
   const contextValue = {
     dataFood,
@@ -14,13 +15,11 @@ function Provider({ children }) {
     setIdFood,
     idDrink,
     setIdDrink,
+    recipe,
+    setRecipe,
   };
 
-  return (
-    <AppReceitaContext.Provider value={contextValue}>
-      {children}
-    </AppReceitaContext.Provider>
-  );
+  return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;
 }
 
 export default Provider;

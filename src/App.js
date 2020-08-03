@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 import Provider from './context/Provider';
@@ -24,6 +20,7 @@ import FavoritesRecipes from './pages/FavoritesRecipes';
 import DoneRecipes from './pages/DoneRecipes';
 import DetailsDrink from './pages/DetailsDrink';
 import DetailsFood from './pages/DetailsFood';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
@@ -32,28 +29,13 @@ function App() {
       <Provider>
         <BrowserRouter>
           <Switch>
-            <Route
-              path="/bebidas/:id/in-progress"
-              component={RecipeProgressDrink}
-            />
-            <Route
-              path="/comidas/:id/in-progress"
-              component={RecipeProgressFood}
-            />
-            <Route path="/bebidas/:id" component={DetailsDrink} />
-            <Route path="/comidas/:id" component={DetailsFood} />
-            <Route
-              path="/explorar/comidas/area"
-              component={ExploreFoodByArea}
-            />
-            <Route
-              path="/explorar/bebidas/ingredientes"
-              component={ExploreDrinkByIngredients}
-            />
-            <Route
-              path="/explorar/comidas/ingredientes"
-              component={ExploreFoodByIngredients}
-            />
+            <Route path="/bebidas/:id/in-progress" component={RecipeProgressDrink} />
+            <Route path="/comidas/:id/in-progress" component={RecipeProgressFood} />
+            <Route path="/bebidas/:id" component={RecipeDetails} />
+            <Route path="/comidas/:id" component={RecipeDetails} />
+            <Route path="/explorar/comidas/area" component={ExploreFoodByArea} />
+            <Route path="/explorar/bebidas/ingredientes" component={ExploreDrinkByIngredients} />
+            <Route path="/explorar/comidas/ingredientes" component={ExploreFoodByIngredients} />
             <Route path="/explorar/bebidas" component={ExploreDrink} />
             <Route path="/explorar/comidas" component={ExploreFood} />
             <Route path="/receitas-favoritas" component={FavoritesRecipes} />

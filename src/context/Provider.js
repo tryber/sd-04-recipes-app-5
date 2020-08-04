@@ -4,12 +4,15 @@ import AppReceitaContext from './AppReceitaContext';
 
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
+  const [dataDrink, setDataDrink] = useState([]);
   const [idFood, setIdFood] = useState(null);
   const [idDrink, setIdDrink] = useState(null);
 
   const contextValue = {
     dataFood,
     setDataFood,
+    dataDrink,
+    setDataDrink,
     idFood,
     setIdFood,
     idDrink,

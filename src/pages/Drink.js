@@ -14,6 +14,7 @@ function Drink() {
         <div className="row row-cols-2">
           {drinks.slice(0, 12).map((drink) => (
             <div key={drink.idDrink} className="col">
+              {console.log("Categoria", drink.strCategory)}
               <Link to={`/comidas/${drink.idDrink}`}>
                 <div className="card" style={{ width: '18rem' }}>
                   <img

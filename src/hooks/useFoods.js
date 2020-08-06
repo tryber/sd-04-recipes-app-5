@@ -10,10 +10,12 @@ const useFoods = () => {
   const {
     dataFood,
     setDataFood,
-    foodCategories,
-    setFoodsCategories,
-    dataFoodCategory,
-    setDataFoodCategory,
+    category,
+    setCategory,
+    dataCategory,
+    setDataCategory,
+    selectCategory,
+    setSelectCategory,
   } = useContext(AppReceitaContext);
 
   const getFood = async () => {
@@ -30,22 +32,27 @@ const useFoods = () => {
     return categories;
   };
 
-  // Pega as receitas pela categoria e seta no data sempre que essa categoria for mudada
   useEffect(() => {
-    getCategories().then((categories) => setFoodsCategories(categories.meals));
+    getCategories().then((categories) => setCategory(categories.meals));
   }, []);
 
   const getFoodByCategory = async (categoria) => {
-    const mealsByCategory = await getMealsByCategory(categoria);
-    setDataFoodCategory(mealsByCategory.meals);
+    if (selectCategory === categoria || categoria === 'All') {
+      setSelectCategory('');
+      const mealsByCategory = await getMeals();
+      setDataCategory(mealsByCategory.meals);
+    } else {
+      setSelectCategory(categoria);
+      const mealsByCategory = await getMealsByCategory(categoria);
+      setDataCategory(mealsByCategory.meals);
+    }
   };
 
   useEffect(() => {
-    setDataFood(dataFoodCategory);
-  }, [dataFoodCategory]);
-  // acaba aqui
-  
-  return { dataFood, foodCategories, getFoodByCategory };
+    setDataFood(dataCategory);
+  }, [dataCategory]);
+
+  return { dataFood, category, getFoodByCategory };
 };
 
 export default useFoods;

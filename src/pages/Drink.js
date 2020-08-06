@@ -4,18 +4,32 @@ import Footer from '../components/Footer';
 import useDrinks from '../hooks/useDrinks';
 
 function Drink() {
-  const drinks = useDrinks();
+  const { dataDrink, category, getDrinkByCategory } = useDrinks();
+  const fiveCategories = category.slice(0, 5);
 
-  if (!drinks) return <p> Loading... </p>;
+  if (!dataDrink) return <p> Loading... </p>;
 
   return (
-    <div className="Drink">
+    <div className="drinkPage">
+      <div className="BotoesCategories">
+        <button onClick={() => getDrinkByCategory('All')}>All</button>
+        {fiveCategories.map((categoria) => (
+          <div key={categoria.strCategory} className="categoria">
+            <button
+              data-testid={`${categoria.strCategory}-category-filter`}
+              onClick={() => getDrinkByCategory(categoria.strCategory)}
+            >
+              {categoria.strCategory}
+            </button>
+          </div>
+        ))}
+      </div>
       <div className="container">
         <div className="row row-cols-2">
-          {drinks.slice(0, 12).map((drink) => (
+          {dataDrink.slice(0, 12).map((drink) => (
             <div key={drink.idDrink} className="col">
-              {console.log("Categoria", drink.strCategory)}
-              <Link to={`/comidas/${drink.idDrink}`}>
+              {console.log('Categoria', drink.strCategory)}
+              <Link to={`/bebidas/${drink.idDrink}`}>
                 <div className="card" style={{ width: '18rem' }}>
                   <img
                     src={drink.strDrinkThumb}

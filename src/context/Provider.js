@@ -5,8 +5,9 @@ import AppReceitaContext from './AppReceitaContext';
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
   const [dataDrink, setDataDrink] = useState([]);
-  const [foodCategories, setFoodsCategories] = useState([]);
-  const [dataFoodCategory, setDataFoodCategory] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [selectCategory, setSelectCategory] = useState('');
+  const [dataCategory, setDataCategory] = useState([]);
   const [idFood, setIdFood] = useState(null);
   const [idDrink, setIdDrink] = useState(null);
 
@@ -17,12 +18,14 @@ function Provider({ children }) {
     setDataDrink,
     idFood,
     setIdFood,
-    foodCategories,
-    setFoodsCategories,
-    dataFoodCategory,
-    setDataFoodCategory,
+    category,
+    setCategory,
+    dataCategory,
+    setDataCategory,
     idDrink,
     setIdDrink,
+    selectCategory,
+    setSelectCategory,
   };
 
   return (

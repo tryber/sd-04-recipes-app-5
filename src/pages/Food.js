@@ -4,15 +4,15 @@ import Footer from '../components/Footer';
 import useFoods from '../hooks/useFoods';
 
 function Food() {
-  const { dataFood, foodCategories, getFoodByCategory } = useFoods();
-  const fiveCategories = foodCategories.slice(0, 5);
+  const { dataFood, category, getFoodByCategory } = useFoods();
+  const fiveCategories = category.slice(0, 5);
 
   if (!dataFood) return <p> Loading... </p>;
 
   return (
-    <div className="FoodPage">
+    <div className="foodPage">
       <div className="BotoesCategories">
-        <button>All</button>
+        <button onClick={() => getFoodByCategory('All')}>All</button>
         {fiveCategories.map((categoria) => (
           <div key={categoria.strCategory} className="categoria">
             <button

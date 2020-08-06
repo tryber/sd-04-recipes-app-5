@@ -22,23 +22,28 @@ export const getMeal = (id) => fetch(`${ID_URL}${id}`).then((response) => respon
   .json()
   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));
 
-export const getMeals = () => fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=').then((response) => response
+// used in hooks useFetchMeals 
+  export const getMeals = () => fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=').then((response) => response
   .json()
   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));
 
-export const getMealsCategories = () => fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list').then((response) => response
+// used in hooks useGetCategories
+  export const getMealsCategories = () => fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list').then((response) => response
   .json()
   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));
 
-export const getMealsByCategory = (cat) => fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`).then((response) => response
+// used in hooks useFetchMeals
+  export const getMealsByCategory = (cat) => fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`).then((response) => response
   .json()
   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));
 
-export const getMealDetailsById = (id) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`).then((response) => response
+  // used in hooks getMealDetailsById
+  export const getMealDetailsById = (id) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`).then((response) => response
   .json()
   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));
 
-export const receivedSearch = (obj, resolver) => {
+// used in hooks useFetchMeals
+  export const receivedSearch = (obj, resolver) => {
   const json = { meals: obj };
   return new Promise((resolve, reject) => {
     setTimeout(() => {

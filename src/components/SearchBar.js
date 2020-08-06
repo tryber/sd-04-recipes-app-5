@@ -3,6 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { getMealByLetter, getMealByIngredients, getMealByName } from '../services/MealDBApi';
 import { getDrinkByLetter, getDrinkByIngredients, getDrinkByName } from '../services/DrinkDBApi';
 import AppReceitaContext from '../context/AppReceitaContext';
+import { GetMealsContext } from '../context/getMeals';
 
 
 const fetchesMeals = {
@@ -31,13 +32,13 @@ const searchLetter = async (filter, oneLetter, location) => {
   }
   return undefined;
 };
-
+// Buscar ou marca button radio na SearchBar com mudança de estado
 const SearchBar = () => {
   const history = useHistory(); const location = useLocation();
   const [selected, setSelected] = useState('name');
   const [search, setSearch] = useState('');
   const { setCocktails } = useContext(AppReceitaContext);
-  const { getMeals: { receiveSearchedMeals } } = useContext();//Colocar hooks no usecontext
+  const { getMeals: { receiveSearchedMeals } } = useContext(GetMealsContext);
   const verifyReceived = (obj, type) => {
     const reconf = { comidas: 'idMeal', bebidas: 'idDrink' };
     history.push(`${location.pathname}/${obj[0][reconf[type]]}`);
@@ -49,14 +50,19 @@ const SearchBar = () => {
     received = await searchLetter(selected, search, route);
     if (!received) {
       alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      // senão retorna condições normais { setCocktails } & getMeals: { receiveSearchedMeals }
+      return;
+    } else if (received.length === 1) {
+      verifyReceived(received, type);
+    }
+    setCocktails(received); receiveSearchedMeals(received);
   };
   return (
     <div>
+      {/* caixa de busca */}
       <input
         type="text" data-testid="search-input"
         name="searchBar" onChange={(e) => setSearch(e.target.value)}
-      />
+        />
       <div>
         {/* button radio - requisito 14 */}
         <input

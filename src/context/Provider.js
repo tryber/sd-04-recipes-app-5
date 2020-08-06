@@ -25,7 +25,7 @@ function Provider({ children }) {
     isDisable,
     setIsDisable,
     isLogged,
-    setIsLogged
+    setIsLogged,
   };
 
   return (

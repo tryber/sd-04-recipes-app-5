@@ -34,7 +34,7 @@ function Drink() {
                   <img
                     src={drink.strDrinkThumb}
                     className="card-img-top"
-                    alt="Meal picture"
+                    alt="Drink"
                   />
                   <div className="card-body">
                     <p className="card-text">{drink.strDrink}</p>

@@ -33,7 +33,7 @@ function Food() {
                   <img
                     src={food.strMealThumb}
                     className="card-img-top"
-                    alt="Meal picture"
+                    alt="Meal"
                   />
                   <div className="card-body">
                     <p className="card-text">{food.strMeal}</p>

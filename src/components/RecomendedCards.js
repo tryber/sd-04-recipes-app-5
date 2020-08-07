@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import { getDrinks } from '../services/DrinkDB-API';
 import { getMeals } from '../services/MealDB-API';
@@ -14,7 +15,7 @@ const RecomendedCards = (props) => {
     }
   }, []);
   if (recomended) {
-    let settings = {
+    const settings = {
       dots: true,
       infinite: false,
       speed: 500,
@@ -22,14 +23,22 @@ const RecomendedCards = (props) => {
       slidesToScroll: 2,
     };
     return (
-      <div class="carousel-wrapper">
+      <div className="carousel-wrapper">
         <h2>Recomendadas</h2>
         <Slider {...settings}>
           {recomended.map((card, index) => (
-            <div key={index} data-testid={`${index}-recomendation-card`}>
-              <img src={isFoodRecipe ? card.strDrinkThumb : card.strMealThumb} />
+            <div
+              key={isFoodRecipe ? card.strDrink : card.strMeal}
+              data-testid={`${index}-recomendation-card`}
+            >
+              <img
+                src={isFoodRecipe ? card.strDrinkThumb : card.strMealThumb}
+                alt={`${isFoodRecipe ? card.strDrink : card.strMeal}`}
+              />
               <h2>{card.strCategory}</h2>
-              <h1 data-testid={`${index}-recomendation-title`}>{isFoodRecipe ? card.strDrink : card.strMeal}</h1>
+              <h1 data-testid={`${index}-recomendation-title`}>
+                {isFoodRecipe ? card.strDrink : card.strMeal}
+              </h1>
             </div>
           ))}
         </Slider>
@@ -37,6 +46,14 @@ const RecomendedCards = (props) => {
     );
   }
   return <div>...loading</div>;
+};
+
+RecomendedCards.propTypes = {
+  isFoodRecipe: PropTypes.bool,
+};
+
+RecomendedCards.defaultProps = {
+  isFoodRecipe: true,
 };
 
 export default RecomendedCards;

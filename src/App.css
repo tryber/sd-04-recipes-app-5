@@ -88,3 +88,14 @@ img {
 .slick-slide.slick-active {
   visibility: visible;
 }
+
+header button img {
+  width: 100%;
+}
+
+header button {
+  background: none;
+  border: none;
+  height: 40px;
+  width: 40px;
+}

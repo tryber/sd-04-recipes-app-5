@@ -18,8 +18,6 @@ import RecipeProgressDrink from './pages/RecipeProgressDrink';
 import RecipeProgressFood from './pages/RecipeProgressFood';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import DoneRecipes from './pages/DoneRecipes';
-import DetailsDrink from './pages/DetailsDrink';
-import DetailsFood from './pages/DetailsFood';
 import RecipeDetails from './pages/RecipeDetails';
 
 function App() {

@@ -18,7 +18,8 @@ const RecipeDetails = (props) => {
       url,
     },
   } = props;
-  const isFoodRecipe = props.match.url.split('/')[1] === 'comidas' ? true : false;
+  const recipeType = url.split('/')[1];
+  const isFoodRecipe = recipeType === 'comidas' ? true : false;
 
   useEffect(() => {
     if (isFoodRecipe) {
@@ -28,16 +29,28 @@ const RecipeDetails = (props) => {
     }
   }, []);
 
+  const checkInProgressRecipes = (id) => {
+    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    const inProgressRecipesByType = inProgressRecipes[recipeType === 'comidas' ? 'meals' : 'cocktails'] || {};
+    return Object.keys(inProgressRecipesByType).some((recipeId) => recipeId === id);
+  };
+
   if (recipe) {
     return (
       <div>
         <RecipeHeader isFoodRecipe={isFoodRecipe} />
         <Ingredients process={false} />
         <RecipeInstructions />
-        {isFoodRecipe && <YouTube data-testid="video" videoId={recipe.strYoutube.match(linkIdPattern)} />}
+        {isFoodRecipe && (
+          <div data-testid="video">
+            <YouTube videoId={recipe.strYoutube.match(linkIdPattern)} />
+          </div>
+        )}
         <RecomendedCards isFoodRecipe={isFoodRecipe} />
-        <Link to={`/bebidas/${id}/in-progress`}>
-          <button data-testid="start-recipe-btn">Iniciar Receita</button>
+        <Link to={`/${recipeType}/${id}/in-progress`}>
+          <button class="btn-fixed-footer" data-testid="start-recipe-btn">
+            {checkInProgressRecipes(id) ? 'Continuar Receita' : 'Iniciar Receita'}
+          </button>
         </Link>
       </div>
     );

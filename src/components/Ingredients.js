@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import AppReceitaContext from '../context/AppReceitaContext';
 import RecipeDetails from '../pages/RecipeDetails';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Ingredients = (props) => {
   const { recipe } = useContext(AppReceitaContext);

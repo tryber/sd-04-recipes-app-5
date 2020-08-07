@@ -6,6 +6,19 @@ header img {
   width: 10%;
 }
 
+.carousel-wrapper {
+  max-width: 70vw;
+}
+
+.btn-fixed-footer {
+  position: fixed;
+  bottom: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
 #meals {
   width: 100%;
   background: #0fa36b;
@@ -66,4 +79,12 @@ header img {
   100% {
     transform: rotate(-10deg);
   }
+}
+
+.slick-slide {
+  visibility: hidden;
+}
+
+.slick-slide.slick-active {
+  visibility: visible;
 }

@@ -5,6 +5,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import AppReceitaContext from '../context/AppReceitaContext';
 
+const copy = require('clipboard-copy');
+
 const RecipeHeader = (props) => {
   const { recipe } = useContext(AppReceitaContext);
   const { isFoodRecipe } = props;
@@ -23,6 +25,10 @@ const RecipeHeader = (props) => {
   } = recipe;
 
   useEffect(() => {
+    const button = document.getElementById('teste');
+    button.addEventListener('click', function () {
+      copy(window.location.href);
+    });
     console.log(props);
     if (checkFavorite(idMeal || idDrink) !== -1) {
       setFavorite(true);
@@ -64,9 +70,9 @@ const RecipeHeader = (props) => {
       <div>
         <h1 data-testid="recipe-title">{isFoodRecipe ? recipe.strMeal : recipe.strDrink}</h1>
         <div>
-          <CopyToClipboard text={window.location.href} onCopy={() => setCopied(true)}>
-            <img data-testid="share-btn" src={shareIcon} />
-          </CopyToClipboard>
+          {/* <CopyToClipboard text={window.location.href} onCopy={() => setCopied(true)}> */}
+          <img id="teste" data-testid="share-btn" src={shareIcon} onClick={() => setCopied(true)} />
+          {/* </CopyToClipboard> */}
           <img
             data-testid="favorite-btn"
             src={favorite ? blackHeartIcon : whiteHeartIcon}

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -25,11 +25,6 @@ const RecipeHeader = (props) => {
   } = recipe;
 
   useEffect(() => {
-    const button = document.getElementById('teste');
-    button.addEventListener('click', function () {
-      copy(window.location.href);
-    });
-    console.log(props);
     if (checkFavorite(idMeal || idDrink) !== -1) {
       setFavorite(true);
     } else {
@@ -64,15 +59,18 @@ const RecipeHeader = (props) => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
   };
 
+  const handleShare = () => {
+    copy(window.location.href);
+    setCopied(!copied);
+  };
+
   return (
     <header>
       <img data-testid="recipe-photo" src={isFoodRecipe ? recipe.strMealThumb : recipe.strDrinkThumb} />
       <div>
         <h1 data-testid="recipe-title">{isFoodRecipe ? recipe.strMeal : recipe.strDrink}</h1>
         <div>
-          {/* <CopyToClipboard text={window.location.href} onCopy={() => setCopied(true)}> */}
-          <img id="teste" data-testid="share-btn" src={shareIcon} onClick={() => setCopied(true)} />
-          {/* </CopyToClipboard> */}
+          <img id="teste" data-testid="share-btn" src={shareIcon} onClick={handleShare} />
           <img
             data-testid="favorite-btn"
             src={favorite ? blackHeartIcon : whiteHeartIcon}

@@ -4,6 +4,10 @@ import AppReceitaContext from './AppReceitaContext';
 
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
+  const [dataDrink, setDataDrink] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [selectCategory, setSelectCategory] = useState('');
+  const [dataCategory, setDataCategory] = useState([]);
   const [idFood, setIdFood] = useState(null);
   const [idDrink, setIdDrink] = useState(null);
   const [recipe, setRecipe] = useState(null);
@@ -16,8 +20,14 @@ function Provider({ children }) {
   const contextValue = {
     dataFood,
     setDataFood,
+    dataDrink,
+    setDataDrink,
     idFood,
     setIdFood,
+    category,
+    setCategory,
+    dataCategory,
+    setDataCategory,
     idDrink,
     setIdDrink,
     recipe,
@@ -30,6 +40,8 @@ function Provider({ children }) {
     setIsDisable,
     isLogged,
     setIsLogged,
+    selectCategory,
+    setSelectCategory,
   };
 
   return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;

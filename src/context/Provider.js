@@ -11,7 +11,9 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
-
+  const [mealCategories, setMealCategories] = useState([]);
+  const [meal, setMeal] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const contextValue = {
     dataFood,
@@ -30,9 +32,19 @@ function Provider({ children }) {
     setIsDisable,
     isLogged,
     setIsLogged,
+    mealCategories,
+    setMealCategories,
+    meal,
+    setMeal,
+    loading,
+    setLoading,
   };
 
-  return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;
+  return (
+    <AppReceitaContext.Provider value={contextValue}>
+      {children}
+    </AppReceitaContext.Provider>
+  );
 }
 
 export default Provider;

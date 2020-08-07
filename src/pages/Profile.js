@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Search from '../components/SearchBar';
 
 export function Food() {
   return (
     <div>
+      <div>
+        <Search />
+      </div>
       <div class={"userButtons"}>
         <Link to={"/receitas-feitas"}><span>Receitas Feitas</span></Link>
         <Link to={"/receitas-favoritas"}><span>Receitas Favoritas</span></Link>

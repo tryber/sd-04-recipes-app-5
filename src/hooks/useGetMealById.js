@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { getMealDetailsById } from '../services/MealDBApi';
-
+import AppReceitaContext from '../context/AppReceitaContext';
 
 function useGetMealById() {
-  const [meal, setMeal] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { meal, setMeal, loading, setLoading } = useContext(AppReceitaContext);
 
   const handleFetchMealSuccess = (json) => {
     if (loading) return;

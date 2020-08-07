@@ -12,7 +12,7 @@ function Drink() {
   return (
     <div className="drinkPage">
       <div className="BotoesCategories">
-        <button onClick={() => getDrinkByCategory('All')}>All</button>
+        <button data-testid="All-category-filter" onClick={() => getDrinkByCategory('All')}>All</button>
         {fiveCategories.map((categoria) => (
           <div key={categoria.strCategory} className="categoria">
             <button
@@ -26,18 +26,25 @@ function Drink() {
       </div>
       <div className="container">
         <div className="row row-cols-2">
-          {dataDrink.slice(0, 12).map((drink) => (
-            <div key={drink.idDrink} className="col">
+          {dataDrink.slice(0, 12).map((drink, index) => (
+            <div
+              key={drink.idDrink}
+              data-testid={`${index}-recipe-card`}
+              className="col"
+            >
               {console.log('Categoria', drink.strCategory)}
               <Link to={`/bebidas/${drink.idDrink}`}>
                 <div className="card" style={{ width: '18rem' }}>
                   <img
                     src={drink.strDrinkThumb}
+                    data-testid={`${index}-card-img`}
                     className="card-img-top"
                     alt="Drink"
                   />
                   <div className="card-body">
-                    <p className="card-text">{drink.strDrink}</p>
+                    <p className="card-text" data-testid={`${index}-card-name`}>
+                      {drink.strDrink}
+                    </p>
                   </div>
                 </div>
               </Link>

@@ -15,11 +15,11 @@ const Header = (props) => {
       </Link>
       <h1 data-testid="page-title">{props.pageTitle}</h1>
       {props.searchBtn && (
-        <button>
+        <button onClick={() => setDisplaySearchBar(!displaySearchBar)}>
           <img data-testid="search-top-btn" src={searchIcon} alt="search icon" />
         </button>
       )}
-      {displaySearchBar && SearchBar}
+      {displaySearchBar && <SearchBar />}
     </header>
   );
 };

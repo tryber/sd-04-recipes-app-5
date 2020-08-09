@@ -7,7 +7,7 @@ export function Food() {
   return (
     <div>
       <Header pageTitle="Perfil" searchBtn={false} />
-      <div class={'userButtons'}>
+      <div className={'userButtons'}>
         <Link to={'/receitas-feitas'}>
           <span>Receitas Feitas</span>
         </Link>

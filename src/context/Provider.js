@@ -28,7 +28,7 @@ function Provider({ children }) {
     isDisable,
     setIsDisable,
     isLogged,
-    setIsLogged
+    setIsLogged,
   };
 
   return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;

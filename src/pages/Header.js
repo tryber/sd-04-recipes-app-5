@@ -1,6 +1,7 @@
 import React from 'react';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from '../components/SearchBar';
 
 const Header = () => {
   return (
@@ -14,6 +15,7 @@ const Header = () => {
       </Link>
       <h1 data-testid="page-title">"Titulo da página"</h1>
       <img data-testid="search-top-btn" src={searchIcon} alt="search icon" />
+      <div>{ < SearchBar /> }</div>
     </header>
   );
 };

@@ -86,6 +86,36 @@ export const getMealDetailsById = (id) =>
       )
   );
 
+// Search LETTER
+export const getMealByLetterType = (letter, type) =>
+  fetch(`https://www.the${type}db.com/api/json/v1/1/search.php?f='${letter}`).then((response) =>
+  response
+    .json()
+    .then((json) =>
+      response.ok ? Promise.resolve(json) : Promise.reject(json)
+    )
+);
+
+// Search NAME
+export const getMealByNameType = (name, type) =>
+fetch(`https://www.the${type}db.com/api/json/v1/1/search.php?s='${name}`).then((response) =>
+response
+  .json()
+  .then((json) =>
+    response.ok ? Promise.resolve(json) : Promise.reject(json)
+  )
+);
+
+// Search INGREDIENT
+export const getMealByIngredientsType = (ingredient, type) =>
+fetch(`https://www.the${type}db.com/api/json/v1/1/search.php?i='${ingredient}`).then((response) =>
+response
+  .json()
+  .then((json) =>
+    response.ok ? Promise.resolve(json) : Promise.reject(json)
+  )
+);
+
 // used in hooks useFetchMeals
   export const receivedSearch = (obj, resolver) => {
   const json = { meals: obj };

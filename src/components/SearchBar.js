@@ -1,86 +1,129 @@
 import React, { useState, useContext } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
-import { getMealByLetter, getMealByIngredients, getMealByName } from '../services/MealDBApi';
-import { getDrinkByLetter, getDrinkByIngredients, getDrinkByName } from '../services/DrinkDBApi';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import AppReceitaContext from '../context/AppReceitaContext';
-import { GetMealsContext } from '../context/getMeals';
+import { getMealByLetterType, getMealByIngredientsType, getMealByNameType } from '../services/MealDB-API';
 
-
-const fetchesMeals = {
-  name: getMealByName,
-  ingredient: getMealByIngredients,
-  letter: getMealByLetter,
+// check de todos os parametros
+const allChecks = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
+  checkIsNull(resp);
+  checkLength(type, resp, setRedirect, mealsType, setFunctionEvent);
 };
 
-const fetchesDrinks = {
-  name: getDrinkByName,
-  ingredient: getDrinkByIngredients,
-  letter: getDrinkByLetter,
-};
-// busca pela primeira letra e alert para caso diferente
-const searchLetter = async (filter, oneLetter, location) => {
-  const getMeal = fetchesMeals[filter];
-  const getDrink = fetchesDrinks[filter];
-  if (filter === 'letter' && oneLetter.length > 1) {
-    alert('Sua busca deve conter somente 1 (um) caracter');
-  } else if (location.match(/comidas/)) {
-    const result = await getMeal(oneLetter).then((response) => response.meals);
-    return result;
-  } else if (location.match(/bebidas/)) {
-    const result = await getDrink(oneLetter).then((response) => response.drinks);
-    return result;
+// check se busca é nula
+const checkIsNull = (resp) => {
+  if (!resp) {
+    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
-  return undefined;
+  return null;
 };
-// Buscar ou marca button radio na SearchBar com mudança de estado
-const SearchBar = () => {
-  const history = useHistory(); const location = useLocation();
-  const [selected, setSelected] = useState('name');
-  const [search, setSearch] = useState('');
-  const { setCocktails } = useContext(AppReceitaContext);
-  const { getMeals: { receiveSearchedMeals } } = useContext(GetMealsContext);
-  const verifyReceived = (obj, type) => {
-    const reconf = { comidas: 'idMeal', bebidas: 'idDrink' };
-    history.push(`${location.pathname}/${obj[0][reconf[type]]}`);
-  };
-  // alert para casos não encontra receita
-  const handleChange = async () => {
-    let received = []; const type = location.pathname.slice(1, 8);
-    const route = location.pathname;
-    received = await searchLetter(selected, search, route);
-    if (!received) {
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      return;
-    } else if (received.length === 1) {
-      verifyReceived(received, type);
-    }
-    setCocktails(received); receiveSearchedMeals(received);
-  };
+
+// Evento seleção button radio
+const eventRadioBtn = (event, setFunctionEvent) => {
+  setFunctionEvent(event.target.value);
+  console.log(eventRadioBtn);
+};
+
+// Checar tamanho da palavra busca
+const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
+  if (!arr) return null;
+  if (arr.length === 1) {
+    setRedirect({
+      shouldRedirect: true,
+      type: mealsType.toLowerCase(),
+      id:
+        arr[0][
+          `id${type
+            .split('')
+            .map((char, i) => (i === 0 ? char.toUpperCase() : char))
+            .join('')}`
+        ],
+    });
+  }
+  return setFunctionEvent(arr);
+};
+
+// filtrar comidas por nome, ingrediente, primerira letra
+const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
+  let type = 'cocktail';
+  if (mealsType === 'Comidas') {
+    type = 'meal';
+  }
+  switch (option) {
+    case 'ingredient':
+      getMealByIngredientsType(type, input).then((resp) => {
+        allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+      });
+      break;
+    case 'name':
+      getMealByNameType(type, input).then((resp) => {
+        allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+      });
+      break;
+    case 'first-letter':
+      if (input.length === 1) {
+        getMealByLetterType(type, input).then((resp) => {
+          allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+        });
+      } else {
+        alert('Sua busca deve conter somente 1 (um) caracter');
+      }
+      break;
+    default:
+  }
+};
+
+// Barra de busca e button radio
+const SearchBar = ({ mealsType }) => {
+  const [redirect, setShoudlRedirect] = useState({ shouldRedirect: false, type: '', id: '' });
+  const [inputText, setInputText] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+  const { setMeals, setDrinks } = useContext(AppReceitaContext);
+
+  const createInputRadio = (value, testid, name) => (
+    <label htmlFor={value}>
+      <input
+        value={value}
+        type="radio"
+        data-testid={testid}
+        id={value}
+        checked={selectedOption === `${value}`}
+        onChange={(event) => eventRadioBtn(event, setSelectedOption)}
+        />
+      {name}
+    </label>
+  );
+  if (redirect.shouldRedirect) return <Redirect to={`/${redirect.type}/${redirect.id}`} />;
   return (
     <div>
-      {/* caixa de busca */}
       <input
-        type="text" data-testid="search-input"
-        name="searchBar" onChange={(e) => setSearch(e.target.value)}
-        />
-      <div>
-        {/* button radio - requisito 14 */}
-        <input
-          type="radio" data-testid="ingredient-search-radio" key="Ingrediente"
-          name="filter" onClick={() => setSelected('ingredient')}
-        /><span>Ingrediente</span>
-        <input
-          type="radio" data-testid="name-search-radio" key="Nome"
-          name="filter" onClick={() => setSelected('name')}
-        /><span>Nome</span>
-        <input
-          type="radio" data-testid="first-letter-search-radio" key="PrimeiraLetra"
-          name="filter" onClick={() => setSelected('letter')}
-        /><span>Primeira Letra</span>
-      </div>
-      <button data-testid="exec-search-btn" onClick={() => handleChange()}>Buscar</button>
+        type="text"
+        placeholder="Search recipe"
+        data-testid="search-input"
+        onChange={(event) => eventRadioBtn(event, setInputText)}
+      />
+      {createInputRadio('ingredient', 'ingredient-search-radio', 'Ingredient')}
+      {createInputRadio('name', 'name-search-radio', 'Name')}
+      {createInputRadio('first-letter', 'first-letter-search-radio', 'First letter')}
+      <button
+        data-testid="exec-search-btn"
+        type="button"
+        onClick={() => {
+          if (console.log(mealsType) === 'Comidas') {
+            mealsFilter(mealsType, inputText, selectedOption, setMeals, setShoudlRedirect);
+          } else {
+            mealsFilter(mealsType, inputText, selectedOption, setDrinks, setShoudlRedirect);
+          }
+        }}
+      >
+        Search
+      </button>
     </div>
   );
 };
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  mealsType: PropTypes.string.isRequired,
+};

@@ -1,43 +1,43 @@
-import { useState, useEffect } from 'react';
-import { getMeals, getMealsByCategory, receivedSearch } from '../services/MealDBApi';
+// import { useState, useEffect } from 'react';
+// import { getMeals, getMealsByCategory, receivedSearch } from '../services/MealDBApi';
 
-// Busca por Seleção por categoria e/ou ingrediente
-function useFetchMeals() {
-  const [meals, setMeals] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+// // Busca por Seleção por categoria e/ou ingrediente
+// function useFetchMeals() {
+//   const [meals, setMeals] = useState([]);
+//   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const handleFetchMealSuccess = (json) => {
-    const dataMeals = json.meals;
-    setMeals([...dataMeals]);
-  };
+//   const handleFetchMealSuccess = (json) => {
+//     const dataMeals = json.meals;
+//     setMeals([...dataMeals]);
+//   };
 
-  useEffect(() => {
-    getMeals().then(handleFetchMealSuccess);
+//   useEffect(() => {
+//     getMeals().then(handleFetchMealSuccess);
 
-    return () => meals;
-  }, []);
+//     return () => meals;
+//   }, []);
 
-  const receiveSearchedMeals = (obj) => {
-    receivedSearch(obj, true)
-    .then(handleFetchMealSuccess);
-  };
+//   const receiveSearchedMeals = (obj) => {
+//     receivedSearch(obj, true)
+//     .then(handleFetchMealSuccess);
+//   };
 
-  const getByCat = (category) => {
-    if (category === selectedCategory || category === 'all') {
-      setSelectedCategory('');
-      getMeals().then(handleFetchMealSuccess);
-    } else {
-      getMealsByCategory(category)
-      .then(handleFetchMealSuccess);
-      setSelectedCategory(category);
-    }
-  };
+//   const getByCat = (category) => {
+//     if (category === selectedCategory || category === 'all') {
+//       setSelectedCategory('');
+//       getMeals().then(handleFetchMealSuccess);
+//     } else {
+//       getMealsByCategory(category)
+//       .then(handleFetchMealSuccess);
+//       setSelectedCategory(category);
+//     }
+//   };
 
-  return {
-    meals,
-    getByCat,
-    receiveSearchedMeals,
-  };
-}
+//   return {
+//     meals,
+//     getByCat,
+//     receiveSearchedMeals,
+//   };
+// }
 
-export default useFetchMeals;
+// export default useFetchMeals;

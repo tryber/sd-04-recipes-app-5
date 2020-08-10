@@ -18,7 +18,6 @@ function Provider({ children }) {
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
-
   const contextValue = {
     dataFood,
     setDataFood,

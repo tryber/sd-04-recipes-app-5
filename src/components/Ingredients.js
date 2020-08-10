@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import AppReceitaContext from '../context/AppReceitaContext';
-import RecipeDetails from '../pages/RecipeDetails';
 
 const Ingredients = (props) => {
   const { recipe } = useContext(AppReceitaContext);
@@ -14,10 +16,8 @@ const Ingredients = (props) => {
       ...ingredients,
       [recipe[`strIngredient${i}`]]: recipe[`strMeasure${i}`],
     };
-    i++;
+    i += 1;
   }
-
-  console.log(ingredients);
 
   const handleCheckBox = (e) => {
     setIngredientsCheck({
@@ -30,20 +30,35 @@ const Ingredients = (props) => {
       <h2>Ingredients</h2>
       {props.process ? (
         Object.entries(ingredients).map(([ingredient, measure], index) => (
-          <label data-testid={`${index}-ingredient-step`}>
-            <input name={ingredient} type="checkbox" checked={ingredientsCheck.ingredient} onChange={handleCheckBox} />
+          <label data-testid={`${index}-ingredient-step`} htmlFor={ingredient}>
+            <input
+              name={ingredient}
+              type="checkbox"
+              checked={ingredientsCheck.ingredient}
+              onChange={handleCheckBox}
+            />
             {`${ingredient} - ${measure}`}
           </label>
         ))
       ) : (
         <ul>
           {Object.entries(ingredients).map(([ingredient, measure], index) => (
-            <li data-testid={`${index}-ingredient-name-and-measure`}>{`${ingredient} - ${measure}`}</li>
+            <li
+              data-testid={`${index}-ingredient-name-and-measure`}
+            >{`${ingredient} - ${measure}`}</li>
           ))}
         </ul>
       )}
     </div>
   );
+};
+
+Ingredients.propTypes = {
+  process: PropTypes.bool,
+};
+
+Ingredients.defaultProps = {
+  process: false,
 };
 
 export default Ingredients;

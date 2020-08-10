@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import AppReceitaContext from '../context/AppReceitaContext';
 import { getMealByLetterType, getMealByIngredientsType, getMealByNameType } from '../services/MealDB-API';
 
+const SearchBar = () => <div data-testid="search-input">Barra de busca</div>;
+
 // check de todos os parametros
 const allChecks = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
   checkIsNull(resp);

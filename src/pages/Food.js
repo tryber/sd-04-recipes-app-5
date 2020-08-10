@@ -12,7 +12,12 @@ function Food() {
   return (
     <div className="foodPage">
       <div className="BotoesCategories">
-        <button data-testid="All-category-filter" onClick={() => getFoodByCategory('All')}>All</button>
+        <button
+          data-testid="All-category-filter"
+          onClick={() => getFoodByCategory('All')}
+        >
+          All
+        </button>
         {fiveCategories.map((categoria) => (
           <div key={categoria.strCategory} className="categoria">
             <button

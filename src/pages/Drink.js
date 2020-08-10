@@ -12,7 +12,12 @@ function Drink() {
   return (
     <div className="drinkPage">
       <div className="BotoesCategories">
-        <button data-testid="All-category-filter" onClick={() => getDrinkByCategory('All')}>All</button>
+        <button
+          data-testid="All-category-filter"
+          onClick={() => getDrinkByCategory('All')}
+        >
+          All
+        </button>
         {fiveCategories.map((categoria) => (
           <div key={categoria.strCategory} className="categoria">
             <button

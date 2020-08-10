@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import useDrinks from '../hooks/useDrinks';
+import Header from '../components/Header';
 
 function Drink() {
   const { dataDrink, category, getDrinkByCategory } = useDrinks();
@@ -11,6 +12,7 @@ function Drink() {
 
   return (
     <div className="drinkPage">
+      <Header pageTitle="Bebidas" />
       <div className="BotoesCategories">
         <button
           data-testid="All-category-filter"

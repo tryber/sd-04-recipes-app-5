@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import useFoods from '../hooks/useFoods';
+import Header from '../components/Header';
 
 function Food() {
   const { dataFood, category, getFoodByCategory } = useFoods();
@@ -11,6 +12,7 @@ function Food() {
 
   return (
     <div className="foodPage">
+      <Header pageTitle="Comidas" />
       <div className="BotoesCategories">
         <button
           data-testid="All-category-filter"

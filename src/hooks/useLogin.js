@@ -12,13 +12,13 @@ export default function useLogin() {
     isDisable,
     setIsDisable,
     isLogged,
-    setIsLogged
+    setIsLogged,
   } = context;
 
-  const validationFields = (email, password) => {
+  const validationFields = (e, pass) => {
     const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const regexPassword = /^[^W_]{7,}$/;
-    if (regexEmail.test(email) && regexPassword.test(password)) setIsDisable(false);
+    if (regexEmail.test(e) && regexPassword.test(pass)) setIsDisable(false);
     else setIsDisable(true);
   };
 
@@ -36,6 +36,6 @@ export default function useLogin() {
     isDisable,
     setIsDisable,
     isLogged,
-    setIsLogged
+    setIsLogged,
   };
 }

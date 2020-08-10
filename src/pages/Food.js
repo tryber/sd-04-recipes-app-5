@@ -8,7 +8,7 @@ function Food() {
   const { idFood } = useContext(AppReceitasContext);
   return (
     <div>
-      <Header pageTitle="Comidas"/>
+      <Header pageTitle="Comidas" />
       <div className="DetailsFood">
         <Link to={`/comidas/${idFood}`}>
           <p>Each Food</p>

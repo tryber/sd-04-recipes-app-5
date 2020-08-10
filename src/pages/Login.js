@@ -9,18 +9,10 @@ const sendLocalStorage = (email) => {
 };
 
 export default function Login() {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    isDisable,
-    isLogged,
-    setIsLogged
-  } = useLogin();
+  const { email, setEmail, password, setPassword, isDisable, isLogged, setIsLogged } = useLogin();
 
-  if (isLogged) return (<Redirect to="/comidas" />);
-  
+  if (isLogged) return <Redirect to="/comidas" />;
+
   return (
     <div>
       <h1>Login</h1>
@@ -33,9 +25,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             data-testid="email-input"
           />
-          <small>
-            Never share your email with anyone else.
-          </small>
+          <small>Never share your email with anyone else.</small>
         </fieldset>
         <fieldset>
           <label htmlFor="password">Password</label>
@@ -45,16 +35,14 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             data-testid="password-input"
           />
-          <small>
-            Must have more than 6 characters.
-          </small>
+          <small>Must have more than 6 characters.</small>
         </fieldset>
         <button
           type="submit"
           disabled={isDisable}
           data-testid="login-submit-btn"
           onClick={() => {
-            sendLocalStorage(email)
+            sendLocalStorage(email);
             setIsLogged(true);
           }}
         >

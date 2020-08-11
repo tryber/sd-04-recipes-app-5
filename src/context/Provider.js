@@ -31,6 +31,8 @@ function Provider({ children }) {
     setDataCategory,
     idDrink,
     setIdDrink,
+    selectCategory,
+    setSelectCategory,
     recipe,
     setRecipe,
     email,
@@ -49,7 +51,11 @@ function Provider({ children }) {
     setDrinks,
   };
 
-  return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;
+  return (
+    <AppReceitaContext.Provider value={contextValue}>
+      {children}
+    </AppReceitaContext.Provider>
+  );
 }
 
 export default Provider;

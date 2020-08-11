@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppReceitaContext from './AppReceitaContext';
 
+const INITIAL_STATE_DONE_RECIPES = [
+  {
+    id: '',
+    type: '',
+    area: '',
+    category: '',
+    alcoholicOrNot: '',
+    name: '',
+    image: '',
+    doneDate: '',
+    tags: [],
+  },
+];
+
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
   const [dataDrink, setDataDrink] = useState([]);
@@ -15,6 +29,7 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
+  const [doneRecipes, setDoneRecipes] = useState(INITIAL_STATE_DONE_RECIPES);
 
   const contextValue = {
     dataFood,
@@ -41,6 +56,8 @@ function Provider({ children }) {
     setIsDisable,
     isLogged,
     setIsLogged,
+    doneRecipes,
+    setDoneRecipes,
   };
 
   return (

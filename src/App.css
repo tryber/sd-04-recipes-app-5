@@ -1,5 +1,26 @@
+header {
+  display: flex;
+}
+
+header img {
+  width: 10%;
+}
+
+.carousel-wrapper {
+  max-width: 70vw;
+}
+
+.btn-fixed-footer {
+  position: fixed;
+  bottom: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
 #meals {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background: #0fa36b;
   display: flex;
@@ -19,14 +40,14 @@
   /* transform-origin set in px for firefox compatibility */
   opacity: 0.6;
   transform-origin: 36px 66px;
-  animation: clink .8s infinite ease;
+  animation: clink 0.8s infinite ease;
 }
 
 #iceRight {
   /* transform-origin set in px for firefox compatibility */
   opacity: 0.6;
   transform-origin: 60px 78px;
-  animation: clink .8s .2s infinite ease;
+  animation: clink 0.8s 0.2s infinite ease;
 }
 
 #meals > span {
@@ -59,4 +80,23 @@
   100% {
     transform: rotate(-10deg);
   }
+}
+
+.slick-slide {
+  visibility: hidden;
+}
+
+.slick-slide.slick-active {
+  visibility: visible;
+}
+
+header button img {
+  width: 100%;
+}
+
+header button {
+  background: none;
+  border: none;
+  height: 40px;
+  width: 40px;
 }

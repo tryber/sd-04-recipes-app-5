@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import useFoods from '../hooks/useFoods';
 import Header from '../components/Header';
 
-const foodCard = (dataFood) => {
+function foodCard(dataFood) {
   return (
     <div className="container">
       <div className="row row-cols-2">

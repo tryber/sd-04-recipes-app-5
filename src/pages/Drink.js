@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import useDrinks from '../hooks/useDrinks';
 import Header from '../components/Header';
 
-const drinkCard = (dataDrink) => {
+function drinkCard(dataDrink) {
   return (
     <div className="container">
       <div className="row row-cols-2">

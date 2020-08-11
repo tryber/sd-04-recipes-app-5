@@ -4,7 +4,9 @@ export const getMealByLetter = (letter) =>
   fetch(`${BASE_URL}${letter}`).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 const ING_URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
@@ -13,7 +15,9 @@ export const getMealByIngredients = (ingredient) =>
   fetch(`${ING_URL}${ingredient}`).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 const NAME_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -22,7 +26,9 @@ export const getMealByName = (name) =>
   fetch(`${NAME_URL}${name}`).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 const ID_URL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
@@ -31,7 +37,9 @@ export const getMeal = (id) =>
   fetch(`${ID_URL}${id}`).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 export const getMeals = () =>
@@ -40,7 +48,9 @@ export const getMeals = () =>
   ).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 export const getMealsCategories = () =>
@@ -49,7 +59,9 @@ export const getMealsCategories = () =>
   ).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 export const getMealsByCategory = (cat) =>
@@ -58,7 +70,9 @@ export const getMealsByCategory = (cat) =>
   ).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 export const getMealDetailsById = (id) =>
@@ -67,7 +81,9 @@ export const getMealDetailsById = (id) =>
   ).then((response) =>
     response
       .json()
-      .then((json) => response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) =>
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
+      )
   );
 
 export const receivedSearch = (obj, resolver) => {

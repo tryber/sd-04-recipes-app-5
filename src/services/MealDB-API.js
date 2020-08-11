@@ -59,10 +59,7 @@ export const getMealDetailsById = (id) =>
 // Search LETTER
 export const getMealByLetterType = (type, letter) =>
   fetch(`https://www.the${type}db.com/api/json/v1/1/search.php?f=${letter}`).then((response) =>
-    response.json().then((json) => {
-      console.log('json', json);
-      return json;
-    }),
+    response.json().then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))),
   );
 // Search NAME
 export const getMealByNameType = (type, name) =>

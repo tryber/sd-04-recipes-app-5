@@ -43,8 +43,6 @@ function Provider({ children }) {
     setIsDisable,
     isLogged,
     setIsLogged,
-    selectCategory,
-    setSelectCategory,
     meals,
     setMeals,
     drinks,

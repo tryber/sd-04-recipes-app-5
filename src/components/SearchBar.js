@@ -8,7 +8,6 @@ import {
   getMealByNameType,
 } from '../services/MealDB-API';
 
-// Checar tamanho da palavra busca
 const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
   if (!arr) return null;
   if (arr.length === 1) {
@@ -46,7 +45,7 @@ const eventRadioBtn = (event, setFunctionEvent) => {
   setFunctionEvent(event.target.value);
 };
 
-// filtrar comidas por nome, ingrediente, primerira letra
+// Atribui type para ambas as API e filtrar por nome, ingrediente, primerira letra no btn-radio
 const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
   let type = 'cocktail';
   if (mealsType === 'comidas') {
@@ -77,7 +76,7 @@ const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) =>
   }
 };
 
-// Barra de busca e button radio
+// Barra de busca após set dos button radio
 const SearchBar = ({ mealsType }) => {
   const [redirect, setShoudlRedirect] = useState({ shouldRedirect: false, type: '', id: '' });
   const [inputText, setInputText] = useState('');

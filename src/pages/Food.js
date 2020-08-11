@@ -46,7 +46,12 @@ function Food() {
     <div className="foodPage">
       <Header recipeType="comidas" />
       <div className="BotoesCategories">
-        <button onClick={() => getFoodByCategory('All')}>All</button>
+        <button
+          data-testid="All-category-filter"
+          onClick={() => getFoodByCategory('All')}
+        >
+          All
+        </button>
         {fiveCategories.map((categoria) => (
           <div key={categoria.strCategory} className="categoria">
             <button
@@ -57,28 +62,6 @@ function Food() {
             </button>
           </div>
         ))}
-      </div>
-      <div className="container">
-        <div className="row row-cols-2">
-          {dataFood.slice(0, 12).map((food) => (
-            <div key={food.idMeal} className="col">
-              <Link to={`/comidas/${food.idMeal}`}>
-                <div className="card" style={{ width: '18rem' }}>
-                  <img src={food.strMealThumb} className="card-img-top" alt="Meal" />
-                  <div className="card-body">
-                    <p className="card-text">{food.strMeal}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-        {/* <div>
-      <Header pageTitle="Comidas" />
-      <div className="DetailsFood">
-        <Link to={`/comidas/${idFood}`}>
-          <p>Each Food</p>
-        </Link> */}
       </div>
       {foodCard(dataFood)}
       <div className="Footer">

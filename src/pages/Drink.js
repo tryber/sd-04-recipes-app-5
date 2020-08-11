@@ -45,7 +45,7 @@ function Drink() {
 
   return (
     <div className="drinkPage">
-      <Header pageTitle="Bebidas" />
+      <Header recipeType="bebidas" />
       <div className="BotoesCategories">
         <button
           data-testid="All-category-filter"
@@ -63,23 +63,6 @@ function Drink() {
             </button>
           </div>
         ))}
-      </div>
-      <div className="container">
-        <div className="row row-cols-2">
-          {dataDrink.slice(0, 12).map((drink) => (
-            <div key={drink.idDrink} className="col">
-              {console.log('Categoria', drink.strCategory)}
-              <Link to={`/bebidas/${drink.idDrink}`}>
-                <div className="card" style={{ width: '18rem' }}>
-                  <img src={drink.strDrinkThumb} className="card-img-top" alt="Drink" />
-                  <div className="card-body">
-                    <p className="card-text">{drink.strDrink}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
       </div>
       {drinkCard(dataDrink)}
       <div className="Footer">

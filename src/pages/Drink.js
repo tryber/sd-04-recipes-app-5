@@ -35,7 +35,7 @@ function drinkCard(dataDrink) {
       </div>
     </div>
   );
-};
+}
 
 function Drink() {
   const { dataDrink, category, getDrinkByCategory } = useDrinks();

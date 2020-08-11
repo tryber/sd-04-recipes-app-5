@@ -34,7 +34,7 @@ function foodCard(dataFood) {
       </div>
     </div>
   );
-};
+}
 
 function Food() {
   const { dataFood, category, getFoodByCategory } = useFoods();

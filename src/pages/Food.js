@@ -12,6 +12,7 @@ function Food() {
 
   return (
     <div className="foodPage">
+      <Header recipeType="comidas" />
       <div className="BotoesCategories">
         <button onClick={() => getFoodByCategory('All')}>All</button>
         {fiveCategories.map((categoria) => (

@@ -2,29 +2,11 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import AppReceitaContext from '../context/AppReceitaContext';
-import { getMealByLetterType, getMealByIngredientsType, getMealByNameType } from '../services/MealDB-API';
-
-const SearchBar = () => <div data-testid="search-input">Barra de busca</div>;
-
-// check de todos os parametros
-const allChecks = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
-  checkIsNull(resp);
-  checkLength(type, resp, setRedirect, mealsType, setFunctionEvent);
-};
-
-// check se busca é nula
-const checkIsNull = (resp) => {
-  if (!resp) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-  }
-  return null;
-};
-
-// Evento seleção button radio
-const eventRadioBtn = (event, setFunctionEvent) => {
-  setFunctionEvent(event.target.value);
-  console.log(eventRadioBtn);
-};
+import {
+  getMealByLetterType,
+  getMealByIngredientsType,
+  getMealByNameType,
+} from '../services/MealDB-API';
 
 // Checar tamanho da palavra busca
 const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
@@ -45,27 +27,47 @@ const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
   return setFunctionEvent(arr);
 };
 
+// check se busca é nula
+const checkIsNull = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
+  const newType = type === 'meal' ? 'meals' : 'drinks';
+  if (!resp[newType]) {
+    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
+
+  const arr = resp[newType];
+  const mealsFilterType = type === 'cocktail' ? 'drink' : 'meal';
+
+  checkLength(mealsFilterType, arr, setRedirect, mealsType, setFunctionEvent);
+  return null;
+};
+
+// Evento seleção button radio
+const eventRadioBtn = (event, setFunctionEvent) => {
+  setFunctionEvent(event.target.value);
+};
+
 // filtrar comidas por nome, ingrediente, primerira letra
 const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
   let type = 'cocktail';
-  if (mealsType === 'Comidas') {
+  if (mealsType === 'comidas') {
     type = 'meal';
   }
   switch (option) {
     case 'ingredient':
       getMealByIngredientsType(type, input).then((resp) => {
-        allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+        checkIsNull(resp, type, setRedirect, mealsType, setFunctionEvent);
       });
       break;
     case 'name':
       getMealByNameType(type, input).then((resp) => {
-        allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+        checkIsNull(resp, type, setRedirect, mealsType, setFunctionEvent);
       });
       break;
     case 'first-letter':
       if (input.length === 1) {
+        // getMealByLetterType(type, input).then((data) => console.log('data', data));
         getMealByLetterType(type, input).then((resp) => {
-          allChecks(resp, type, setRedirect, mealsType, setFunctionEvent);
+          checkIsNull(resp, type, setRedirect, mealsType, setFunctionEvent);
         });
       } else {
         alert('Sua busca deve conter somente 1 (um) caracter');
@@ -80,8 +82,7 @@ const SearchBar = ({ mealsType }) => {
   const [redirect, setShoudlRedirect] = useState({ shouldRedirect: false, type: '', id: '' });
   const [inputText, setInputText] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
-  const { setMeals, setDrinks } = useContext(AppReceitaContext);
-
+  const { setDataDrink, setDataFood } = useContext(AppReceitaContext);
   const createInputRadio = (value, testid, name) => (
     <label htmlFor={value}>
       <input
@@ -91,7 +92,7 @@ const SearchBar = ({ mealsType }) => {
         id={value}
         checked={selectedOption === `${value}`}
         onChange={(event) => eventRadioBtn(event, setSelectedOption)}
-        />
+      />
       {name}
     </label>
   );
@@ -111,10 +112,10 @@ const SearchBar = ({ mealsType }) => {
         data-testid="exec-search-btn"
         type="button"
         onClick={() => {
-          if (console.log(mealsType) === 'Comidas') {
-            mealsFilter(mealsType, inputText, selectedOption, setMeals, setShoudlRedirect);
+          if (mealsType === 'comidas') {
+            mealsFilter(mealsType, inputText, selectedOption, setDataFood, setShoudlRedirect);
           } else {
-            mealsFilter(mealsType, inputText, selectedOption, setDrinks, setShoudlRedirect);
+            mealsFilter(mealsType, inputText, selectedOption, setDataDrink, setShoudlRedirect);
           }
         }}
       >

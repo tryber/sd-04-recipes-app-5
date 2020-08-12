@@ -15,6 +15,8 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
+  const [meals, setMeals] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   const contextValue = {
     dataFood,
@@ -41,6 +43,10 @@ function Provider({ children }) {
     setIsDisable,
     isLogged,
     setIsLogged,
+    meals,
+    setMeals,
+    drinks,
+    setDrinks,
   };
 
   return (

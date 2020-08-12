@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import RecipeHeader from '../components/RecipeHeader';
 import RecipeInstructions from '../components/RecipeInstructions';
-import Ingredients from '../components/Ingredients';
+import IngredientsProgress from '../components/IngredientsProgress';
 import AppReceitaContext from '../context/AppReceitaContext';
 import { getMealDetailsById } from '../services/MealDB-API';
 import { getDrink } from '../services/DrinkDB-API';
@@ -40,7 +40,7 @@ const RecipeProgress = (props) => {
     return (
       <div>
         <RecipeHeader isFoodRecipe={isFoodRecipe} />
-        <Ingredients
+        <IngredientsProgress
           process
           isFoodRecipe={isFoodRecipe}
           ingredientsCheck={ingredientsCheck}

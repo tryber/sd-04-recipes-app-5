@@ -5,8 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 let initialIngredientsCheck = {};
 
-const Ingredients = (props) => {
-  const { ingredientsCheck, setIngredientsCheck, recipeId, inProgressRecipes, type } = props;
+const IngredientsProgress = (props) => {
+  const { ingredientsCheck, setIngredientsCheck, recipeId, inProgressRecipes, type, process } = props;
   useEffect(() => {
     if (Object.keys(inProgressRecipes[type]).some((id) => id === recipeId)) {
       initialIngredientsCheck = inProgressRecipes[type][recipeId];
@@ -22,7 +22,7 @@ const Ingredients = (props) => {
   return (
     <div>
       <h2>Ingredients</h2>
-      {props.process ? (
+      {process ? (
         Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
           <label
             key={ingredient}
@@ -53,7 +53,7 @@ const Ingredients = (props) => {
   );
 };
 
-Ingredients.propTypes = {
+IngredientsProgress.propTypes = {
   inProgressRecipes: PropTypes.shape({
     cocktails: PropTypes.objectOf(
       PropTypes.shape({ measure: PropTypes.string, checked: PropTypes.bool }),
@@ -71,7 +71,7 @@ Ingredients.propTypes = {
   type: PropTypes.string,
 };
 
-Ingredients.defaultProps = {
+IngredientsProgress.defaultProps = {
   inProgressRecipes: { meals: {}, cocktails: {} },
   ingredientsCheck: {},
   process: false,
@@ -80,4 +80,4 @@ Ingredients.defaultProps = {
   type: 'meal',
 };
 
-export default Ingredients;
+export default IngredientsProgress;

@@ -1,20 +1,19 @@
-import { getMealByLetter, getMealByIngredients, getMealByName } from '../services/MealDBApi';
-import { getDrinkByLetter, getDrinkByIngredients, getDrinkByName } from '../services/DrinkDBApi';
+import React from 'react';
 
-const SearchBar = () => {
-  const fetchesMeals = {
-    name: getMealByName,
-    ingredient: getMealByIngredients,
-    letter: getMealByLetter,
-  };
+// import { getMealByLetter, getMealByIngredients, getMealByName } from '../services/MealDBApi';
+// import { getDrinkByLetter, getDrinkByIngredients, getDrinkByName } from '../services/DrinkDBApi';
 
-  const fetchesDrinks = {
-    name: getDrinkByName,
-    ingredient: getDrinkByIngredients,
-    letter: getDrinkByLetter,
-  };
+const SearchBar = () => <div data-testid="search-input">Barra de busca</div>;
+// const fetchesMeals = {
+//   name: getMealByName,
+//   ingredient: getMealByIngredients,
+//   letter: getMealByLetter,
+// };
 
-  return { fetchesDrinks, fetchesMeals };
-};
+// const fetchesDrinks = {
+//   name: getDrinkByName,
+//   ingredient: getDrinkByIngredients,
+//   letter: getDrinkByLetter,
+// };
 
 export default SearchBar;

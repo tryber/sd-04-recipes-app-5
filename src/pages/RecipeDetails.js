@@ -5,10 +5,11 @@ import YouTube from 'react-youtube';
 import RecipeHeader from '../components/RecipeHeader';
 import RecipeInstructions from '../components/RecipeInstructions';
 import RecomendedCards from '../components/RecomendedCards';
-import Ingredients from '../components/Ingredients';
+import IngredientsDetails from '../components/IngredientsDetails';
 import AppReceitaContext from '../context/AppReceitaContext';
 import { getMealDetailsById } from '../services/MealDB-API';
 import { getDrink } from '../services/DrinkDB-API';
+import useIngredientsProgress from '../hooks/useIngredientsProgress';
 
 const checkInProgressRecipes = (id, recipeType) => {
   const inProgressRecipes =
@@ -41,7 +42,7 @@ const RecipeDetails = (props) => {
     return (
       <div>
         <RecipeHeader isFoodRecipe={isFoodRecipe} />
-        <Ingredients process={false} />
+        <IngredientsDetails />
         <RecipeInstructions />
         {isFoodRecipe && (
           <div data-testid="video">

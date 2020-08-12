@@ -3,48 +3,54 @@ import AppReceitaContext from '../context/AppReceitaContext';
 
 const useIngredientsProgress = (isFoodRecipe) => {
   const { recipe } = useContext(AppReceitaContext);
+  const [ingredientsCheck, setIngredientsCheck] = useState({});
   const type = isFoodRecipe ? 'meals' : 'cocktails';
-  const recipeId = isFoodRecipe ? recipe.idMeal : recipe.idDrink;
 
-  let ingredients = {};
-  let i = 1;
-
-  while (recipe[`strIngredient${i}`]) {
-    ingredients = {
-      ...ingredients,
-      [recipe[`strIngredient${i}`]]: recipe[`strMeasure${i}`],
-    };
-    i += 1;
-  }
-
-  let initialIngredientsCheck = {};
   let inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {
     cocktails: {},
     meals: {},
   };
-  if (
-    Object.keys(inProgressRecipes[type]).some((recipe) => {
-      return recipe === recipeId;
-    })
-  ) {
-    initialIngredientsCheck = inProgressRecipes[type][recipeId];
-  } else {
-    Object.keys(ingredients).forEach(
-      (ingredientKey) => (initialIngredientsCheck[ingredientKey] = false),
-    );
+
+  let recipeId = null;
+  let ingredients = {};
+  let i = 1;
+
+  if (recipe) {
+    recipeId = isFoodRecipe ? recipe.idMeal : recipe.idDrink;
   }
 
-  const [ingredientsCheck, setIngredientsCheck] = useState({ ...initialIngredientsCheck });
+  useEffect(() => {
+    if (recipe && !Object.keys(inProgressRecipes[type]).some((id) => id === recipeId)) {
+      while (recipe[`strIngredient${i}`]) {
+        ingredients = {
+          ...ingredients,
+          [recipe[`strIngredient${i}`]]: recipe[`strMeasure${i}`],
+        };
+        i += 1;
+      }
+      const initialIngredientsCheck = {};
+      Object.entries(ingredients).forEach(
+        (ingredientKey) =>
+          (initialIngredientsCheck[ingredientKey[0]] = {
+            checked: false,
+            measure: ingredientKey[1],
+          }),
+      );
+      setIngredientsCheck({ ...initialIngredientsCheck });
+    }
+  }, [recipe]);
 
   useEffect(() => {
-    inProgressRecipes = {
-      ...inProgressRecipes,
-      [type]: { ...inProgressRecipes[type], [recipeId]: { ...ingredientsCheck } },
-    };
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+    if (recipeId) {
+      inProgressRecipes = {
+        ...inProgressRecipes,
+        [type]: { ...inProgressRecipes[type], [recipeId]: { ...ingredientsCheck } },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+    }
   }, [ingredientsCheck]);
 
-  return { ingredientsCheck, setIngredientsCheck, ingredients };
+  return { ingredientsCheck, setIngredientsCheck, ingredients, recipeId, inProgressRecipes, type };
 };
 
 export default useIngredientsProgress;

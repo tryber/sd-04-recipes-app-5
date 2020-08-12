@@ -1,30 +1,32 @@
 import PropTypes from 'prop-types';
-import React, { useState, useContext } from 'react';
+import React, { useEffect } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import AppReceitaContext from '../context/AppReceitaContext';
-import useIngredientsProgress from '../hooks/useIngredientsProgress';
+
+let initialIngredientsCheck = {};
 
 const Ingredients = (props) => {
-  const { ingredientsCheck, setIngredientsCheck, ingredients } = useIngredientsProgress(
-    props.isFoodRecipe,
-  );
-
-  const handleCheckBox = (e) => {
-    const { name } = e.target;
+  const { ingredientsCheck, setIngredientsCheck, recipeId, inProgressRecipes, type } = props;
+  useEffect(() => {
+    if (Object.keys(inProgressRecipes[type]).some((id) => id === recipeId)) {
+      initialIngredientsCheck = inProgressRecipes[type][recipeId];
+    }
+    setIngredientsCheck({ ...initialIngredientsCheck });
+  }, []);
+  const handleCheckBox = ({ target: { name } }) => {
     setIngredientsCheck({
       ...ingredientsCheck,
-      [name]: !ingredientsCheck[name],
+      [name]: { ...ingredientsCheck[name], checked: !ingredientsCheck[name].checked },
     });
   };
-
   return (
     <div>
       <h2>Ingredients</h2>
       {props.process ? (
-        Object.entries(ingredients).map(([ingredient, measure], index) => (
+        Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
           <label
-            style={{ textDecoration: ingredientsCheck[ingredient] ? 'line-through' : 'inherit' }}
+            key={ingredient}
+            style={{ textDecoration: ingredientData.checked ? 'line-through' : 'inherit' }}
             data-testid={`${index}-ingredient-step`}
             htmlFor={ingredient}
           >
@@ -32,18 +34,18 @@ const Ingredients = (props) => {
               name={ingredient}
               id={ingredient}
               type="checkbox"
-              checked={ingredientsCheck[ingredient]}
+              checked={ingredientData.checked}
               onChange={handleCheckBox}
             />
-            {`${ingredient} - ${measure}`}
+            {`${ingredient} - ${ingredientData.measure}`}
           </label>
         ))
       ) : (
         <ul>
-          {Object.entries(ingredients).map(([ingredient, measure], index) => (
+          {Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
             <li
               data-testid={`${index}-ingredient-name-and-measure`}
-            >{`${ingredient} - ${measure}`}</li>
+            >{`${ingredient} - ${ingredientData.measure}`}</li>
           ))}
         </ul>
       )}
@@ -52,11 +54,30 @@ const Ingredients = (props) => {
 };
 
 Ingredients.propTypes = {
+  inProgressRecipes: PropTypes.shape({
+    cocktails: PropTypes.objectOf(
+      PropTypes.shape({ measure: PropTypes.string, checked: PropTypes.bool }),
+    ),
+    meals: PropTypes.objectOf(
+      PropTypes.shape({ measure: PropTypes.string, checked: PropTypes.bool }),
+    ),
+  }),
+  ingredientsCheck: PropTypes.objectOf(
+    PropTypes.shape({ measure: PropTypes.string, checked: PropTypes.bool }),
+  ),
   process: PropTypes.bool,
+  recipeId: PropTypes.string,
+  setIngredientsCheck: PropTypes.func,
+  type: PropTypes.string,
 };
 
 Ingredients.defaultProps = {
+  inProgressRecipes: { meals: {}, cocktails: {} },
+  ingredientsCheck: {},
   process: false,
+  recipeId: '',
+  setIngredientsCheck: () => console.log('função default'),
+  type: 'meal',
 };
 
 export default Ingredients;

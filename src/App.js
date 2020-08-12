@@ -14,8 +14,6 @@ import ExploreDrinkByIngredients from './pages/ExploreDrinkByIngredients';
 import ExploreFood from './pages/ExploreFood';
 import ExploreFoodByArea from './pages/ExploreFoodByArea';
 import ExploreFoodByIngredients from './pages/ExploreFoodByIngredients';
-import RecipeProgressDrink from './pages/RecipeProgressDrink';
-import RecipeProgressFood from './pages/RecipeProgressFood';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import DoneRecipes from './pages/DoneRecipes';
 import RecipeDetails from './pages/RecipeDetails';

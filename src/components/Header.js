@@ -7,10 +7,6 @@ import searchIcon from '../images/searchIcon.svg';
 
 const Header = (props) => {
   const [displaySearchBar, setDisplaySearchBar] = useState(false);
-<<<<<<< HEAD
-  console.log(props);
-=======
->>>>>>> a24d60202e9879dfcafb659c4b4d874f7c4e8bbf
 
   return (
     <header>

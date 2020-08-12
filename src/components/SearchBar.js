@@ -8,6 +8,7 @@ import {
   getMealByNameType,
 } from '../services/MealDB-API';
 
+// check da type para query na API e tratamento da mesma
 const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
   if (!arr) return null;
   if (arr.length === 1) {

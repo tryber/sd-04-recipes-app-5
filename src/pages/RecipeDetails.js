@@ -9,7 +9,6 @@ import IngredientsDetails from '../components/IngredientsDetails';
 import AppReceitaContext from '../context/AppReceitaContext';
 import { getMealDetailsById } from '../services/MealDB-API';
 import { getDrink } from '../services/DrinkDB-API';
-import useIngredientsProgress from '../hooks/useIngredientsProgress';
 
 const checkInProgressRecipes = (id, recipeType) => {
   const inProgressRecipes =

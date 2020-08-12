@@ -6,7 +6,14 @@ import 'slick-carousel/slick/slick-theme.css';
 let initialIngredientsCheck = {};
 
 const IngredientsProgress = (props) => {
-  const { ingredientsCheck, setIngredientsCheck, recipeId, inProgressRecipes, type, process } = props;
+  const {
+    ingredientsCheck,
+    setIngredientsCheck,
+    recipeId,
+    inProgressRecipes,
+    type,
+    process,
+  } = props;
   useEffect(() => {
     if (Object.keys(inProgressRecipes[type]).some((id) => id === recipeId)) {
       initialIngredientsCheck = inProgressRecipes[type][recipeId];

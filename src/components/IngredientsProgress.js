@@ -6,14 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 let initialIngredientsCheck = {};
 
 const IngredientsProgress = (props) => {
-  const {
-    ingredientsCheck,
-    setIngredientsCheck,
-    recipeId,
-    inProgressRecipes,
-    type,
-    process,
-  } = props;
+  const { ingredientsCheck, setIngredientsCheck, recipeId, inProgressRecipes, type } = props;
   useEffect(() => {
     if (Object.keys(inProgressRecipes[type]).some((id) => id === recipeId)) {
       initialIngredientsCheck = inProgressRecipes[type][recipeId];
@@ -29,33 +22,24 @@ const IngredientsProgress = (props) => {
   return (
     <div>
       <h2>Ingredients</h2>
-      {process ? (
-        Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
-          <label
-            key={ingredient}
-            style={{ textDecoration: ingredientData.checked ? 'line-through' : 'inherit' }}
-            data-testid={`${index}-ingredient-step`}
-            htmlFor={ingredient}
-          >
-            <input
-              name={ingredient}
-              id={ingredient}
-              type="checkbox"
-              checked={ingredientData.checked}
-              onChange={handleCheckBox}
-            />
-            {`${ingredient} - ${ingredientData.measure}`}
-          </label>
-        ))
-      ) : (
-        <ul>
-          {Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
-            <li
-              data-testid={`${index}-ingredient-name-and-measure`}
-            >{`${ingredient} - ${ingredientData.measure}`}</li>
-          ))}
-        </ul>
-      )}
+      {Object.entries(ingredientsCheck).map(([ingredient, ingredientData], index) => (
+        <label
+          key={ingredient}
+          style={{ textDecoration: ingredientData.checked ? 'line-through' : 'inherit' }}
+          data-testid={`${index}-ingredient-step`}
+          htmlFor={ingredient}
+        >
+          <input
+            name={ingredient}
+            id={ingredient}
+            type="checkbox"
+            checked={ingredientData.checked}
+            onChange={handleCheckBox}
+          />
+          {`${ingredient} - ${ingredientData.measure}`}
+        </label>
+      ))}
+      ))
     </div>
   );
 };

@@ -17,9 +17,13 @@ export function Food() {
           <span data-testid="profile-favorite-btn">Receitas Favoritas</span>
         </Link>
         <Link to={'/'}>
-          <span data-testid="profile-logout-btn" onClick={() => window.localStorage.clear()}>
+          <button
+            type="button"
+            data-testid="profile-logout-btn"
+            onClick={() => window.localStorage.clear()}
+          >
             Sair
-          </span>
+          </button>
         </Link>
       </div>
       <div className="Footer">

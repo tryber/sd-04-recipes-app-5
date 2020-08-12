@@ -56,7 +56,6 @@ IngredientsProgress.propTypes = {
   ingredientsCheck: PropTypes.objectOf(
     PropTypes.shape({ measure: PropTypes.string, checked: PropTypes.bool }),
   ),
-  process: PropTypes.bool,
   recipeId: PropTypes.string,
   setIngredientsCheck: PropTypes.func,
   type: PropTypes.string,
@@ -65,7 +64,6 @@ IngredientsProgress.propTypes = {
 IngredientsProgress.defaultProps = {
   inProgressRecipes: { meals: {}, cocktails: {} },
   ingredientsCheck: {},
-  process: false,
   recipeId: '',
   setIngredientsCheck: () => console.log('função default'),
   type: 'meal',

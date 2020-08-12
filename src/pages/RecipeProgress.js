@@ -51,7 +51,7 @@ const RecipeProgress = (props) => {
           type={type}
         />
         <RecipeInstructions />
-        <FinishRecipeBtn ingredientsCheck={ingredientsCheck} />
+        <FinishRecipeBtn ingredientsCheck={ingredientsCheck} isFoodRecipe={isFoodRecipe} />
       </div>
     );
   }

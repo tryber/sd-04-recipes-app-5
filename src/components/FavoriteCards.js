@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-
-const copy = require('clipboard-copy');
+import copy from 'clipboard-copy';
 
 const filterFavs = (filter, favRecipes) => {
   if (filter !== 'all') {

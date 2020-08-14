@@ -39,3 +39,6 @@ export const getDrinksByCategory = (cat) =>
 
 export const getRandomDrink = () =>
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').then((data) => data.json());
+
+export const getDrinksIngredients = () =>
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').then((data) => data.json());

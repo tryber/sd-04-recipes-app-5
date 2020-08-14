@@ -1,9 +1,5 @@
 import { useEffect, useContext } from 'react';
-import {
-  getMeals,
-  getMealsCategories,
-  getMealsByCategory,
-} from '../services/MealDB-API';
+import { getMeals, getMealsCategories, getMealsByCategory } from '../services/MealDB-API';
 import AppReceitaContext from '../context/AppReceitaContext';
 
 const useFoods = () => {
@@ -24,7 +20,11 @@ const useFoods = () => {
   };
 
   useEffect(() => {
-    getFood().then((data) => setDataFood(data.meals));
+    getFood().then((data) => {
+      if (dataFood.length === 0) {
+        setDataFood(data.meals);
+      }
+    });
   }, []);
 
   const getCategories = async () => {
@@ -49,7 +49,9 @@ const useFoods = () => {
   };
 
   useEffect(() => {
-    setDataFood(dataCategory);
+    if (dataCategory.length !== 0) {
+      setDataFood(dataCategory);
+    }
   }, [dataCategory]);
 
   return { dataFood, category, getFoodByCategory };

@@ -17,9 +17,9 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
     <div>
       <Link to={`/bebidas/${id}`}>
         <img
-          data-testid={`${index}-horizontal-image`}
           src={image}
-          alt=""
+          alt="quando clicar na bebida"
+          data-testid={`${index}-horizontal-image`}
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>
@@ -43,9 +43,9 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
     <div className="doneFoods">
       <Link to={`/comidas/${id}`}>
         <img
-          data-testid={`${index}-horizontal-image`}
           src={image}
-          alt=""
+          alt="quando clicar na comida"
+          data-testid={`${index}-horizontal-image`}
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>

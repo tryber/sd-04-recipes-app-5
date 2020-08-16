@@ -19,7 +19,7 @@ const Header = (props) => {
           <img data-testid="search-top-btn" src={searchIcon} alt="search icon" />
         </button>
       )}
-      {displaySearchBar && <SearchBar />}
+      {displaySearchBar && <SearchBar mealsType={props.recipeType} />}
     </header>
   );
 };
@@ -27,11 +27,13 @@ const Header = (props) => {
 Header.propTypes = {
   pageTitle: PropTypes.string,
   searchBtn: PropTypes.bool,
+  recipeType: PropTypes.string,
 };
 
 Header.defaultProps = {
   pageTitle: 'App de receitas',
   searchBtn: true,
+  recipeType: 'comidas',
 };
 
 export default Header;

@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import AppReceitaContext from '../context/AppReceitaContext';
 import shareIcon from '../images/shareIcon.svg';
@@ -9,19 +10,25 @@ const handleShare = (type, id, setIsShow) => {
   setIsShow(false);
 };
 
-const doneDrink = (recipe) => {
-  const [isShow, setIsShow] = useState(true);
+const doneDrink = (recipe, isShow, setIsShow, index) => {
   const { id, name, image, doneDate, alcoholicOrNot } = recipe;
+  console.log('Chamou', id);
 
   return (
     <div>
-      <img src={image} alt="Foto da imagem" />
-      <p>Nome: {name}</p>
-      <p>{alcoholicOrNot}</p>
-      <p>Data de realização: {doneDate}</p>
+      <Link to={`/bebidas/${id}`}>
+        <img
+          data-testid={`${index}-horizontal-image`}
+          src={image}
+          alt="Foto da imagem"
+        />
+        <p data-testid={`${index}-horizontal-name`}>{name}</p>
+      </Link>
+      <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
+      <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
       {isShow ? (
         <button onClick={() => handleShare('bebidas', id, setIsShow)}>
-          <img src={shareIcon} />
+          <img data-testid={`${index}-horizontal-share-btn`} src={shareIcon} />
         </button>
       ) : (
         <p>Link copiado!</p>
@@ -30,25 +37,31 @@ const doneDrink = (recipe) => {
   );
 };
 
-const doneFood = (recipe) => {
-  const [isShow, setIsShow] = useState(true);
-  const { area, category, name, image, doneDate, tags } = recipe;
-  const tags = tags.slice(0, 2);
+const doneFood = (recipe, isShow, setIsShow, index) => {
+  const { id, area, category, name, image, doneDate, tags } = recipe;
+
   return (
     <div className="doneFoods">
-      <img src={image} alt="Foto da imagem" />
-      <p>Nome: {name}</p>
-      <p>Categoria: {category}</p>
-      <p>Area: {area}</p>
-      <p>Data de realização: {doneDate}</p>
-      {tags.map((tag) => (
-        <div>
-          <p>Tag API: {tag}</p>
-        </div>
-      ))}
+      <Link to={`/comidas/${id}`}>
+        <img
+          data-testid={`${index}-horizontal-image`}
+          src={image}
+          alt="Foto da imagem"
+        />
+        <p data-testid={`${index}-horizontal-name`}>{name}</p>
+      </Link>
+      <p data-testid={`${index}-horizontal-top-text`}>
+        {area} - {category}
+      </p>
+      <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
+      <p>
+        {tags.slice(0, 2).map((tag) => (
+          <span data-testid={`${index}-${tag}-horizontal-tag`}>{tag}</span>
+        ))}
+      </p>
       {isShow ? (
         <button onClick={() => handleShare('comidas', id, setIsShow)}>
-          <img src={shareIcon} />
+          <img data-testid={`${index}-horizontal-share-btn`} src={shareIcon} />
         </button>
       ) : (
         <p>Link copiado!</p>
@@ -58,13 +71,42 @@ const doneFood = (recipe) => {
 };
 
 function DoneRecipes() {
-  const { doneRecipes } = useContext(AppReceitaContext);
+  const [isShow, setIsShow] = useState(true);
+  const { doneRecipes, setDoneRecipes } = useContext(AppReceitaContext);
+
+  const all = JSON.parse(localStorage.getItem('doneRecipes'));
+  const food = all.filter((recipe) => recipe.type === 'comida');
+  const drink = all.filter((recipe) => recipe.type === 'bebida');
+
+  useEffect(() => {
+    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
+  }, []);
 
   return (
     <div>
       <Header pageTitle="Receitas Feitas" searchBtn={false} />
-      {doneRecipes.map((recipe) =>
-        recipe.type === 'comida' ? doneFood(recipe) : doneDrink(recipe)
+      <button
+        data-testid="filter-by-food-btn"
+        onClick={() => setDoneRecipes(food)}
+      >
+        Food
+      </button>
+      <button
+        data-testid="filter-by-drink-btn"
+        onClick={() => setDoneRecipes(drink)}
+      >
+        Drinks
+      </button>
+      <button
+        data-testid="filter-by-all-btn"
+        onClick={() => setDoneRecipes(all)}
+      >
+        All
+      </button>
+      {doneRecipes.map((recipe, index) =>
+        recipe.type === 'comida'
+          ? doneFood(recipe, isShow, setIsShow, index)
+          : doneDrink(recipe, isShow, setIsShow, index)
       )}
     </div>
   );

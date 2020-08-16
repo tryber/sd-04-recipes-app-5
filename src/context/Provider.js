@@ -30,6 +30,8 @@ function Provider({ children }) {
   const [isDisable, setIsDisable] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   const [doneRecipes, setDoneRecipes] = useState(INITIAL_STATE_DONE_RECIPES);
+  const [meals, setMeals] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   const contextValue = {
     dataFood,
@@ -58,6 +60,10 @@ function Provider({ children }) {
     setIsLogged,
     doneRecipes,
     setDoneRecipes,
+    meals,
+    setMeals,
+    drinks,
+    setDrinks,
   };
 
   return (

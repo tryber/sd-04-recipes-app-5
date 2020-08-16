@@ -110,10 +110,11 @@ function DoneRecipes() {
       >
         All
       </button>
-      {doneRecipes.map((recipe, index) =>
+      {doneRecipes.map((recipe, index) => (
         recipe.type === 'comida'
           ? doneFood(recipe, isShow, setIsShow, index)
-          : doneDrink(recipe, isShow, setIsShow, index),
+          : doneDrink(recipe, isShow, setIsShow, index)
+      )
       )}
     </div>
   );

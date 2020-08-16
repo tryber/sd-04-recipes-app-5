@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import copy from 'clipboard-copy';
 import Header from '../components/Header';
 import AppReceitaContext from '../context/AppReceitaContext';
 import shareIcon from '../images/shareIcon.svg';
-import copy from 'clipboard-copy';
 
 const handleShare = (type, id, setIsShow) => {
   copy(`http://localhost:3000/${type}/${id}`);
@@ -12,7 +12,6 @@ const handleShare = (type, id, setIsShow) => {
 
 const doneDrink = (recipe, isShow, setIsShow, index) => {
   const { id, name, image, doneDate, alcoholicOrNot } = recipe;
-  console.log('Chamou', id);
 
   return (
     <div>
@@ -20,7 +19,7 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="Foto da imagem"
+          alt="Foto da meaning full text"
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>
@@ -46,7 +45,7 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="Foto da imagem"
+          alt="Foto da meaning full text"
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>

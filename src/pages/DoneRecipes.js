@@ -19,7 +19,7 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="nao sei mais o que escrever"
+          alt=""
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>
@@ -45,7 +45,7 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="imagem para passar no cc"
+          alt=""
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>

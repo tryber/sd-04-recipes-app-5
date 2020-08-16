@@ -27,7 +27,11 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
       <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
       {isShow ? (
         <button onClick={() => handleShare('bebidas', id, setIsShow)}>
-          <img data-testid={`${index}-horizontal-share-btn`} src={shareIcon} />
+          <img
+            data-testid={`${index}-horizontal-share-btn`}
+            src={shareIcon}
+            alt="icone que eu nao tinha visto"
+          />
         </button>
       ) : (
         <p>Link copiado!</p>
@@ -60,7 +64,11 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
       </p>
       {isShow ? (
         <button onClick={() => handleShare('comidas', id, setIsShow)}>
-          <img data-testid={`${index}-horizontal-share-btn`} src={shareIcon} />
+          <img
+            data-testid={`${index}-horizontal-share-btn`}
+            src={shareIcon}
+            alt="outro icone"
+          />
         </button>
       ) : (
         <p>Link copiado!</p>
@@ -103,9 +111,9 @@ function DoneRecipes() {
         All
       </button>
       {doneRecipes.map((recipe, index) =>
-        (recipe.type === 'comida'
+        recipe.type === 'comida'
           ? doneFood(recipe, isShow, setIsShow, index)
-          : doneDrink(recipe, isShow, setIsShow, index)),
+          : doneDrink(recipe, isShow, setIsShow, index),
       )}
     </div>
   );

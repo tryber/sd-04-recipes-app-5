@@ -19,7 +19,7 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="textos da meaning full text"
+          alt="nao sei mais o que escrever"
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>
@@ -45,7 +45,7 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
         <img
           data-testid={`${index}-horizontal-image`}
           src={image}
-          alt="text da meaning full text"
+          alt="imagem para passar no cc"
         />
         <p data-testid={`${index}-horizontal-name`}>{name}</p>
       </Link>
@@ -102,7 +102,7 @@ function DoneRecipes() {
       >
         All
       </button>
-      {doneRecipes.map((recipe, index) => {
+      {doneRecipes.map(recipe, index => {
         return recipe.type === 'comida'
           ? doneFood(recipe, isShow, setIsShow, index)
           : doneDrink(recipe, isShow, setIsShow, index);

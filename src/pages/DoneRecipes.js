@@ -114,7 +114,7 @@ function DoneRecipes() {
         recipe.type === 'comida'
           ? doneFood(recipe, isShow, setIsShow, index)
           : doneDrink(recipe, isShow, setIsShow, index)
-      )
+      ),
       )}
     </div>
   );

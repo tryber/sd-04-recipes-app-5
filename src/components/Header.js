@@ -7,6 +7,7 @@ import searchIcon from '../images/searchIcon.svg';
 
 const Header = (props) => {
   const [displaySearchBar, setDisplaySearchBar] = useState(false);
+  const { recipeType, pageTitle, searchBtn } = props;
 
   return (
     <header>
@@ -17,8 +18,12 @@ const Header = (props) => {
           alt="profile icon"
         />
       </Link>
-      <h1 data-testid="page-title">{props.pageTitle}</h1>
-      {props.searchBtn && (
+      <h1 data-testid="page-title">
+        {recipeType === 'Comidas' || recipeType === 'Bebidas'
+          ? recipeType
+          : pageTitle}
+      </h1>
+      {searchBtn && (
         <button onClick={() => setDisplaySearchBar(!displaySearchBar)}>
           <img
             data-testid="search-top-btn"
@@ -27,7 +32,7 @@ const Header = (props) => {
           />
         </button>
       )}
-      {displaySearchBar && <SearchBar mealsType={props.recipeType} />}
+      {displaySearchBar && <SearchBar mealsType={recipeType} />}
     </header>
   );
 };

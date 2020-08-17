@@ -14,11 +14,10 @@ import ExploreDrinkByIngredients from './pages/ExploreDrinkByIngredients';
 import ExploreFood from './pages/ExploreFood';
 import ExploreFoodByArea from './pages/ExploreFoodByArea';
 import ExploreFoodByIngredients from './pages/ExploreFoodByIngredients';
-import RecipeProgressDrink from './pages/RecipeProgressDrink';
-import RecipeProgressFood from './pages/RecipeProgressFood';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import DoneRecipes from './pages/DoneRecipes';
 import RecipeDetails from './pages/RecipeDetails';
+import RecipeProgress from './pages/RecipeProgress';
 
 function App() {
   return (
@@ -27,8 +26,8 @@ function App() {
       <Provider>
         <BrowserRouter>
           <Switch>
-            <Route path="/bebidas/:id/in-progress" component={RecipeProgressDrink} />
-            <Route path="/comidas/:id/in-progress" component={RecipeProgressFood} />
+            <Route path="/bebidas/:id/in-progress" component={RecipeProgress} />
+            <Route path="/comidas/:id/in-progress" component={RecipeProgress} />
             <Route path="/bebidas/:id" component={RecipeDetails} />
             <Route path="/comidas/:id" component={RecipeDetails} />
             <Route path="/explorar/comidas/area" component={ExploreFoodByArea} />

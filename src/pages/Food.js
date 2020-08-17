@@ -44,7 +44,7 @@ function Food() {
 
   return (
     <div className="foodPage">
-      <Header recipeType="comidas" />
+      <Header pageTitle="Comidas" />
       <div className="BotoesCategories">
         <button
           data-testid="All-category-filter"

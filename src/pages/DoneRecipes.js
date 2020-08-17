@@ -82,8 +82,8 @@ function DoneRecipes() {
   const { doneRecipes, setDoneRecipes } = useContext(AppReceitaContext);
 
   const all = JSON.parse(localStorage.getItem('doneRecipes'));
-  const food = all.filter((recipe) => recipe.type === 'comida');
-  const drink = all.filter((recipe) => recipe.type === 'bebida');
+  const food = all && all.filter((recipe) => recipe.type === 'comida');
+  const drink = all && all.filter((recipe) => recipe.type === 'bebida');
 
   useEffect(() => {
     setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
@@ -110,7 +110,7 @@ function DoneRecipes() {
       >
         All
       </button>
-      {doneRecipes.map((recipe, index) => (
+      { doneRecipes && doneRecipes.map((recipe, index) => (
         recipe.type === 'comida'
           ? doneFood(recipe, isShow, setIsShow, index)
           : doneDrink(recipe, isShow, setIsShow, index)

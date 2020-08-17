@@ -11,12 +11,20 @@ const Header = (props) => {
   return (
     <header>
       <Link to="/perfil">
-        <img data-testid="profile-top-btn" src={profileIcon} alt="profile icon" />
+        <img
+          data-testid="profile-top-btn"
+          src={profileIcon}
+          alt="profile icon"
+        />
       </Link>
       <h1 data-testid="page-title">{props.pageTitle}</h1>
       {props.searchBtn && (
         <button onClick={() => setDisplaySearchBar(!displaySearchBar)}>
-          <img data-testid="search-top-btn" src={searchIcon} alt="search icon" />
+          <img
+            data-testid="search-top-btn"
+            src={searchIcon}
+            alt="search icon"
+          />
         </button>
       )}
       {displaySearchBar && <SearchBar mealsType={props.recipeType} />}

@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-export function Food() {
+export function Profile() {
   const user = JSON.parse(localStorage.user);
+
   return (
     <div>
       <Header pageTitle="Perfil" searchBtn={false} />
@@ -33,4 +34,4 @@ export function Food() {
   );
 }
 
-export default Food;
+export default Profile;

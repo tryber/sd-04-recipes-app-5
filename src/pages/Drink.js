@@ -45,7 +45,7 @@ function Drink() {
 
   return (
     <div className="drinkPage">
-      <Header recipeType="bebidas" />
+      <Header pageTitle="Bebidas" />
       <div className="BotoesCategories">
         <button
           data-testid="All-category-filter"

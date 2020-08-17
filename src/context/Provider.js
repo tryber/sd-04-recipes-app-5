@@ -32,6 +32,8 @@ function Provider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState(INITIAL_STATE_DONE_RECIPES);
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
 
   const contextValue = {
     dataFood,
@@ -64,13 +66,13 @@ function Provider({ children }) {
     setMeals,
     drinks,
     setDrinks,
+    inputText,
+    setInputText,
+    selectedOption,
+    setSelectedOption,
   };
 
-  return (
-    <AppReceitaContext.Provider value={contextValue}>
-      {children}
-    </AppReceitaContext.Provider>
-  );
+  return <AppReceitaContext.Provider value={contextValue}>{children}</AppReceitaContext.Provider>;
 }
 
 export default Provider;

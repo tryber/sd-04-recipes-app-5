@@ -29,7 +29,7 @@ const checkLength = (type, arr, setRedirect, mealsType, setFunctionEvent) => {
 };
 
 // check se busca é nula
-const checkIsNull = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
+export const checkIsNull = (resp, type, setRedirect, mealsType, setFunctionEvent) => {
   const newType = type === 'meal' ? 'meals' : 'drinks';
   if (!resp[newType]) {
     return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
@@ -48,7 +48,7 @@ const eventRadioBtn = (event, setFunctionEvent) => {
 };
 
 // Atribui type para ambas as API e filtrar por nome, ingrediente, primerira letra no btn-radio
-const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
+export const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
   let type = 'cocktail';
   if (mealsType === 'comidas') {
     type = 'meal';
@@ -82,9 +82,15 @@ const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) =>
 // Barra de busca após set dos button radio
 const SearchBar = ({ mealsType }) => {
   const [redirect, setShoudlRedirect] = useState({ shouldRedirect: false, type: '', id: '' });
-  const [inputText, setInputText] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
-  const { setDataDrink, setDataFood } = useContext(AppReceitaContext);
+  const {
+    setDataDrink,
+    setDataFood,
+    inputText,
+    setInputText,
+    selectedOption,
+    setSelectedOption,
+  } = useContext(AppReceitaContext);
+
   const createInputRadio = (value, testid, name) => (
     <label htmlFor={value}>
       <input

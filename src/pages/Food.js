@@ -9,11 +9,7 @@ function foodCard(dataFood) {
     <div className="container">
       <div className="row row-cols-2">
         {dataFood.slice(0, 12).map((food, index) => (
-          <div
-            key={food.idMeal}
-            data-testid={`${index}-recipe-card`}
-            className="col"
-          >
+          <div key={food.idMeal} data-testid={`${index}-recipe-card`} className="col">
             <Link to={`/comidas/${food.idMeal}`}>
               <div className="card" style={{ width: '18rem' }}>
                 <img
@@ -38,6 +34,7 @@ function foodCard(dataFood) {
 
 function Food() {
   const { dataFood, category, getFoodByCategory } = useFoods();
+  console.log('food', dataFood);
   const fiveCategories = category.slice(0, 5);
 
   if (!dataFood) return <p> Loading... </p>;
@@ -46,10 +43,7 @@ function Food() {
     <div className="foodPage">
       <Header recipeType="Comidas" />
       <div className="BotoesCategories">
-        <button
-          data-testid="All-category-filter"
-          onClick={() => getFoodByCategory('All')}
-        >
+        <button data-testid="All-category-filter" onClick={() => getFoodByCategory('All')}>
           All
         </button>
         {fiveCategories.map((categoria) => (

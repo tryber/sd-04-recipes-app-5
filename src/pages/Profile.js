@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-export function Food() {
+export function Profile() {
   const user = JSON.parse(localStorage.user);
+
   return (
     <div>
-      <Header pageTitle="Perfil" searchBtn={false} />
       <p data-testid="profile-email">{user.email}</p>
       <div className={'userButtons'}>
         <Link to={'/receitas-feitas'}>
@@ -33,4 +33,4 @@ export function Food() {
   );
 }
 
-export default Food;
+export default Profile;

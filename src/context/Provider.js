@@ -16,10 +16,6 @@ const INITIAL_STATE_DONE_RECIPES = [
   },
 ];
 
-const INITIAL_STATE_USER_EMAIL = {
-  email: '',
-}
-
 function Provider({ children }) {
   const [dataFood, setDataFood] = useState([]);
   const [dataDrink, setDataDrink] = useState([]);
@@ -29,7 +25,7 @@ function Provider({ children }) {
   const [idFood, setIdFood] = useState(null);
   const [idDrink, setIdDrink] = useState(null);
   const [recipe, setRecipe] = useState(null);
-  const [userEmail, setUserEmail] = useState(INITIAL_STATE_USER_EMAIL);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
@@ -54,8 +50,8 @@ function Provider({ children }) {
     setSelectCategory,
     recipe,
     setRecipe,
-    userEmail,
-    setUserEmail,
+    email,
+    setEmail,
     password,
     setPassword,
     isDisable,

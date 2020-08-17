@@ -110,3 +110,9 @@ input[type=checkbox]:checked + label {
   color:red;
   text-decoration: line-through;
 }
+
+.ingredient-card {
+  min-width: 200px;
+  min-height: 200px;
+}
+

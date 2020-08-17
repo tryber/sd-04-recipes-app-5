@@ -1,9 +1,5 @@
 import { useEffect, useContext } from 'react';
-import {
-  getDrinks,
-  getDrinksCategories,
-  getDrinksByCategory,
-} from '../services/DrinkDB-API';
+import { getDrinks, getDrinksCategories, getDrinksByCategory } from '../services/DrinkDB-API';
 import AppReceitaContext from '../context/AppReceitaContext';
 
 const useDrinks = () => {
@@ -24,7 +20,11 @@ const useDrinks = () => {
   };
 
   useEffect(() => {
-    getFetchDrink().then((drinks) => setDataDrink(drinks.drinks));
+    getFetchDrink().then((drinks) => {
+      if (dataDrink.length === 0) {
+        setDataDrink(drinks.drinks);
+      }
+    });
   }, []);
 
   const getCategories = async () => {
@@ -49,7 +49,9 @@ const useDrinks = () => {
   };
 
   useEffect(() => {
-    setDataDrink(dataCategory);
+    if (dataCategory.length !== 0) {
+      setDataDrink(dataCategory);
+    }
   }, [dataCategory]);
 
   return { dataDrink, category, getDrinkByCategory };

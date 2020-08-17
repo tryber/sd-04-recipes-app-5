@@ -35,7 +35,7 @@ function foodCard(dataFood) {
     </div>
   );
 }
-
+// comit
 function Food() {
   const { dataFood, category, getFoodByCategory } = useFoods();
   const fiveCategories = category.slice(0, 5);

@@ -8,6 +8,7 @@ export function Profile() {
 
   return (
     <div>
+      <Header pageTitle="Perfil" searchBtn={false} />
       <p data-testid="profile-email">{user.email}</p>
       <div className={'userButtons'}>
         <Link to={'/receitas-feitas'}>

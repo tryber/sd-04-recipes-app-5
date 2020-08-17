@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
+import FavoriteRecipesFilter from '../components/FavoriteRecipesFilter';
+import FavoriteCards from '../components/FavoriteCards';
 
 function FavoriteRecipes() {
+  const [filter, setFilter] = useState('all');
+  console.log(filter);
   return (
     <div>
       <Header pageTitle="Receitas Favoritas" searchBtn={false} />
-      <p> Nome comida </p>
-      <p> Ingredientes </p>
-      <p> Instruções </p>
-      <p> Video </p>
-      <p> Recomendados </p>
+      <FavoriteRecipesFilter setFilter={setFilter} />
+      <FavoriteCards filter={filter} />
     </div>
   );
 }

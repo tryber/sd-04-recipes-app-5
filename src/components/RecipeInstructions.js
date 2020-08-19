@@ -3,7 +3,6 @@ import AppReceitaContext from '../context/AppReceitaContext';
 
 const RecipeInstructions = () => {
   const { recipe } = useContext(AppReceitaContext);
-  console.log(recipe);
   return (
     <div>
       <h2>Instructions</h2>

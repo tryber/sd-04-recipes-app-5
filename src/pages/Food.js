@@ -41,7 +41,7 @@ function Food() {
 
   return (
     <div className="foodPage">
-      <Header recipeType="comidas" />
+      <Header recipeType="Comidas" />
       <div className="BotoesCategories">
         <button data-testid="All-category-filter" onClick={() => getFoodByCategory('All')}>
           All

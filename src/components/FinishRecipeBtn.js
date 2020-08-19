@@ -13,6 +13,7 @@ const handleNewDoneRecipe = (newDoneRecipe) => {
 
 const FinishRecipeBtn = (props) => {
   const { recipe } = useContext(AppReceitaContext);
+
   const { isFoodRecipe } = props;
   const {
     idMeal,
@@ -42,9 +43,8 @@ const FinishRecipeBtn = (props) => {
   return (
     <Link to={'/receitas-feitas'}>
       <button
-        disabled={Object.values(props.ingredientsCheck).some(
-          (ingredient) => ingredient.checked === false,
-        )}
+        disabled={Object.values(props.ingredientsCheck)
+          .some((ingredient) => ingredient.checked === false)}
         className="btn-fixed-footer"
         data-testid="finish-recipe-btn"
         onClick={() => handleNewDoneRecipe(newDoneRecipe)}

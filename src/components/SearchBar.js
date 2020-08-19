@@ -52,6 +52,7 @@ export const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedir
   if (mealsType === 'comidas') {
     type = 'meal';
   }
+  console.log('Input Meal', input);
   switch (option) {
     case 'ingredient':
       getMealByIngredientsType(type, input).then((resp) => {

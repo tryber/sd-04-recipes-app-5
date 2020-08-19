@@ -7,20 +7,32 @@ import searchIcon from '../images/searchIcon.svg';
 
 const Header = (props) => {
   const [displaySearchBar, setDisplaySearchBar] = useState(false);
-  console.log(props);
+  const { recipeType, pageTitle, searchBtn } = props;
 
   return (
     <header>
       <Link to="/perfil">
-        <img data-testid="profile-top-btn" src={profileIcon} alt="profile icon" />
+        <img
+          data-testid="profile-top-btn"
+          src={profileIcon}
+          alt="profile icon"
+        />
       </Link>
-      <h1 data-testid="page-title">{props.pageTitle}</h1>
-      {props.searchBtn && (
+      <h1 data-testid="page-title">
+        {recipeType === 'Comidas' || recipeType === 'Bebidas'
+          ? recipeType
+          : pageTitle}
+      </h1>
+      {searchBtn && (
         <button onClick={() => setDisplaySearchBar(!displaySearchBar)}>
-          <img data-testid="search-top-btn" src={searchIcon} alt="search icon" />
+          <img
+            data-testid="search-top-btn"
+            src={searchIcon}
+            alt="search icon"
+          />
         </button>
       )}
-      {displaySearchBar && <SearchBar mealsType={props.recipeType} />}
+      {displaySearchBar && <SearchBar mealsType={recipeType} />}
     </header>
   );
 };

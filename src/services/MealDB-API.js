@@ -70,11 +70,12 @@ export const getMealByNameType = (type, name) =>
   );
 
 // Search INGREDIENT
-export const getMealByIngredientsType = (type, ingredient) =>
-  fetch(`https://www.the${type}db.com/api/json/v1/1/filter.php?i=${ingredient}`).then((response) =>
+export const getMealByIngredientsType = (type, ingredient) => {
+  console.log(type, ingredient);
+  return fetch(`https://www.the${type}db.com/api/json/v1/1/filter.php?i=${ingredient}`).then((response) =>
     response.json().then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))),
   );
-
+};
 // used in hooks useFetchMeals
 export const receivedSearch = (obj, resolver) => {
   const json = { meals: obj };

@@ -13,7 +13,7 @@ function ExploreDrink() {
   }, []);
   return (
     <div>
-      <Header pageTitle="Explorar Comidas" searchBtn={false} />
+      <Header pageTitle="Explorar Bebidas" searchBtn={false} />
       <div>
         <Link to="/explorar/bebidas/ingredientes">
           <button data-testid="explore-by-ingredient">Por Ingredientes</button>

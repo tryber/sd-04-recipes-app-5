@@ -48,8 +48,9 @@ const eventRadioBtn = (event, setFunctionEvent) => {
 
 // Atribui type para ambas as API e filtrar por nome, ingrediente, primerira letra no btn-radio
 export const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedirect) => {
+  console.log('mealsType', mealsType);
   let type = 'cocktail';
-  if (mealsType === 'comidas') {
+  if (mealsType === 'Comidas') {
     type = 'meal';
   }
   console.log('Input Meal', input);
@@ -119,7 +120,7 @@ const SearchBar = ({ mealsType }) => {
         data-testid="exec-search-btn"
         type="button"
         onClick={() => {
-          if (mealsType === 'comidas') {
+          if (mealsType === 'Comidas') {
             mealsFilter(mealsType, inputText, selectedOption, setDataFood, setShoudlRedirect);
           } else {
             mealsFilter(mealsType, inputText, selectedOption, setDataDrink, setShoudlRedirect);

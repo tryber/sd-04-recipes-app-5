@@ -18,6 +18,7 @@ const Header = (props) => {
           alt="profile icon"
         />
       </Link>
+      {console.log(recipeType)}
       <h1 data-testid="page-title">
         {recipeType === 'Comidas' || recipeType === 'Bebidas'
           ? recipeType
@@ -46,7 +47,7 @@ Header.propTypes = {
 Header.defaultProps = {
   pageTitle: 'App de receitas',
   searchBtn: true,
-  recipeType: 'comidas',
+  recipeType: 'title',
 };
 
 export default Header;

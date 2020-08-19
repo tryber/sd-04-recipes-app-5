@@ -6,7 +6,6 @@ import {
   getMealByLetterType,
   getMealByIngredientsType,
   getMealByNameType,
-  getMealByIngredients,
 } from '../services/MealDB-API';
 
 // check da type para query na API e tratamento da mesma
@@ -56,7 +55,7 @@ export const mealsFilter = (mealsType, input, option, setFunctionEvent, setRedir
   console.log('Input Meal', input);
   switch (option) {
     case 'ingredient':
-      getMealByIngredients(type, input).then((resp) => {
+      getMealByIngredientsType(type, input).then((resp) => {
         checkIsNull(resp, type, setRedirect, mealsType, setFunctionEvent);
       });
       break;

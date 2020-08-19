@@ -75,7 +75,7 @@ export const getMealByIngredientsType = (type, ingredient) => {
   return fetch(`https://www.the${type}db.com/api/json/v1/1/filter.php?i=${ingredient}`).then((response) =>
     response.json().then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))),
   );
-}
+};
 // used in hooks useFetchMeals
 export const receivedSearch = (obj, resolver) => {
   const json = { meals: obj };

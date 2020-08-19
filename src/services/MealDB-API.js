@@ -61,23 +61,6 @@ export const getMealDetailsById = (id) =>
 //   response.ok ? Promise.resolve(json) : Promise.reject(json)
 // )
 
-// Para tela de origem/area
-const URL_COUNTRYLIST = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
-
-export const getCountryList = () =>
-  fetch(`${URL_COUNTRYLIST}`).then((response) =>
-    response.json(console.log('respListCountry', response))
-    // .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))),
-  );
-
-const URL_COUNTRYFILTER = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
-
-export const getCountryFilter = (country) =>
-  fetch(`${URL_COUNTRYFILTER}${country}`).then((response) =>
-    response.json(console.log('respCountryF', response))
-    // .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))),
-  );
-
 export const receivedSearch = (obj, resolver) => {
   const json = { meals: obj };
   return new Promise((resolve, reject) => {

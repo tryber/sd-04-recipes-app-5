@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-// import { getMeals, getCountryList, getCountryFilter } from '../services/MealDB-API';
+// import {getRecipeList, getCountry } from '../services/OriginAPI';
 
 function ExploreFoodByArea() {
   return (

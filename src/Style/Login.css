@@ -1,0 +1,33 @@
+.login-wrapper {
+  margin: auto;
+  width: 90%;
+}
+
+.login-wrapper img {
+  padding-bottom: 20px;
+}
+
+.ant-btn-primary {
+  background-color: white;
+  border-color: white;
+  border-radius: 15px;
+  color: #f76a2cff;
+  font-weight: 700;
+}
+
+.ant-btn-primary:hover , .ant-btn-primary:focus {
+  background-color: #ff9e74;
+  border-color: #f76a2c;
+}
+
+.ant-input-affix-wrapper {
+  border-radius: 15px;
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: #ca3d00;
+}
+
+.ant-input-affix-wrapper:focus , .ant-input-affix-wrapper-focused {
+  border-color: #ff9e74;
+}

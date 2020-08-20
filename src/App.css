@@ -19,18 +19,6 @@ img {
   max-width: 100%;
 }
 
-#meals {
-  min-height: 100vh;
-  width: 100%;
-  background: #0fa36b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: sans-serif;
-  color: #464646;
-}
-
 #rocksGlass {
   max-height: 80vh;
   animation: shake 1s infinite ease;
@@ -48,38 +36,6 @@ img {
   opacity: 0.6;
   transform-origin: 60px 78px;
   animation: clink 0.8s 0.2s infinite ease;
-}
-
-#meals > span {
-  color: aliceblue;
-  font-weight: 900;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 3em;
-  animation: shake 1.5s infinite ease;
-}
-
-@keyframes shake {
-  0% {
-    transform: rotate(5deg);
-  }
-  50% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes clink {
-  0% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(20deg);
-  }
-  100% {
-    transform: rotate(-10deg);
-  }
 }
 
 .slick-slide {
@@ -101,13 +57,13 @@ header button {
   width: 40px;
 }
 
-input[type=checkbox] + label {
+input[type='checkbox'] + label {
   color: #ccc;
   font-style: italic;
-} 
+}
 
-input[type=checkbox]:checked + label {
-  color:red;
+input[type='checkbox']:checked + label {
+  color: red;
   text-decoration: line-through;
 }
 
@@ -116,3 +72,19 @@ input[type=checkbox]:checked + label {
   min-height: 200px;
 }
 
+#meals {
+  min-height: 100vh;
+  background-color: #f76a2cff;
+}
+
+.login-wrapper {
+  color: white;
+}
+
+#meals h1 {
+  color: white;
+}
+
+.ant-form {
+  color: white;
+}

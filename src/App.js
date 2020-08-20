@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Layout } from 'antd';
 
 import './App.css';
 import Provider from './context/Provider';
@@ -21,8 +22,7 @@ import RecipeProgress from './pages/RecipeProgress';
 
 function App() {
   return (
-    <div id="meals">
-      <span>App de receitas</span>
+    <Layout id="meals">
       <Provider>
         <BrowserRouter>
           <Switch>
@@ -45,7 +45,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </Provider>
-    </div>
+    </Layout>
   );
 }
 

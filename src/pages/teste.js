@@ -1,110 +1,65 @@
-<div className={classes.root}>
-  <GridList cellHeight={180} className={classes.gridList}>
-    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-      <ListSubheader component="div">Comidas</ListSubheader>
-    </GridListTile>
-    {dataDrink.slice(0, 12).map((drink, index) => (
-      <GridListTile key={drink.idDrink} data-testid={`${index}-recipe-card`}>
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+}));
+
+export default function SpacingGrid() {
+  const classes = useStyles();
+
+  return (
+    <Grid container className={classes.root}>
+      <Grid item xs={12}>
+        <Grid container justify="center" spacing={5}>
+          {[0, 1, 2].map((value) => (
+            <Grid key={value} item>
+              <Paper className={classes.paper}>
+              <p>Aloo</p>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+}
+
+<div className="doneFoods">
+      <Link to={`/comidas/${id}`}>
         <img
-              src={drink.strDrinkThumb}
-              data-testid={`${index}-card-img`}
-              className="card-img-top"
-              alt="Drink"
-            />
-        <GridListTileBar title={drink.strDrink} />
-      </GridListTile>
-    ))}
-  </GridList>
-</div>
-
-return (
-  <div className="container">
-    <div className="row row-cols-2">
-      {dataFood.slice(0, 12).map((food, index) => (
-        <div key={food.idMeal} data-testid={`${index}-recipe-card`} className="col">
-          <Link to={`/comidas/${food.idMeal}`}>
-            <div className="card" style={{ width: '18rem' }}>
-              <img
-                src={food.strMealThumb}
-                data-testid={`${index}-card-img`}
-                className="card-img-top"
-                alt="Meal"
-              />
-              <div className="card-body">
-                <p className="card-text" data-testid={`${index}-card-name`}>
-                  {food.strMeal}
-                </p>
-              </div>
-            </div>
-          </Link>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-<div className="container">
-      <div className="row row-cols-2">
-        {dataDrink.slice(0, 12).map((drink, index) => (
-          <div
-            key={drink.idDrink}
-            data-testid={`${index}-recipe-card`}
-            className="col"
-          >
-            {console.log('Categoria', drink.strCategory)}
-            <Link to={`/bebidas/${drink.idDrink}`}>
-              <div className="card" style={{ width: '18rem' }}>
-                <img
-                  src={drink.strDrinkThumb}
-                  data-testid={`${index}-card-img`}
-                  className="card-img-top"
-                  alt="Drink"
-                />
-                <div className="card-body">
-                  <p className="card-text" data-testid={`${index}-card-name`}>
-                    {drink.strDrink}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
+          src={image}
+          alt="quando clicar na comida"
+          data-testid={`${index}-horizontal-image`}
+        />
+        <p data-testid={`${index}-horizontal-name`}>{name}</p>
+      </Link>
+      <p data-testid={`${index}-horizontal-top-text`}>
+        {area} - {category}
+      </p>
+      <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
+      <p>
+        {tags.slice(0, 2).map((tag) => (
+          <span data-testid={`${index}-${tag}-horizontal-tag`}>{tag}</span>
         ))}
-      </div>
+      </p>
+      {isShow ? (
+        <button onClick={() => handleShare('comidas', id, setIsShow)}>
+          <img
+            data-testid={`${index}-horizontal-share-btn`}
+            src={shareIcon}
+            alt="outro icone"
+          />
+        </button>
+      ) : (
+        <p>Link copiado!</p>
+      )}
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

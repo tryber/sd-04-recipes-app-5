@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -26,6 +26,14 @@ const useStyles = makeStyles((theme) => ({
     height: 700,
   },
 }));
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: '#FF6A28',
+    },
+  },
+});
 
 function foodCard(dataFood, classes) {
   return (
@@ -67,14 +75,16 @@ function Food() {
         {categories.map((categoria) => (
           <div key={categoria.strCategory}>
             <Grid item xs>
-              <Button
-                variant="contained"
-                color="secondary"
-                data-testid={`${categoria.strCategory}-category-filter`}
-                onClick={() => getFoodByCategory(categoria.strCategory)}
-              >
-                {categoria.strCategory}
-              </Button>
+              <ThemeProvider theme={theme}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  data-testid={`${categoria.strCategory}-category-filter`}
+                  onClick={() => getFoodByCategory(categoria.strCategory)}
+                >
+                  {categoria.strCategory}
+                </Button>
+              </ThemeProvider>
             </Grid>
           </div>
         ))}

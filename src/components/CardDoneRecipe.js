@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -14,10 +14,16 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ShareIcon from '@material-ui/icons/Share';
 import Grid from '@material-ui/core/Grid';
+import copy from 'clipboard-copy';
+
 
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
+
+import FeedBack from './FeedBack';
+import Rating from './Rating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,10 +45,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const handleShare = (type, id, setIsShow) => {
+  copy(`http://localhost:3000/${type}/${id}`);
+  setIsShow(false);
+};
+
 function RecipeReviewCard({ recipe }) {
   const { name, image, doneDate, type, id } = recipe;
-  const [expanded, setExpanded] = React.useState(false);
-
+  const [expanded, setExpanded] = useState(false);
+  const [isShow, setIsShow] = useState(true);
+  console.log('cards', recipe);
   const foto = type === 'comida' ? mealIcon : drinkIcon;
 
   const classes = useStyles();
@@ -82,6 +94,9 @@ function RecipeReviewCard({ recipe }) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>
+          <IconButton aria-label="share" onClick={() => handleShare('comidas', id, setIsShow)}>
+            {isShow ? <ShareIcon /> : <p>Link copiado!</p>}
+          </IconButton>
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -95,7 +110,9 @@ function RecipeReviewCard({ recipe }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Method:</Typography>
+            <Typography paragraph>Method:
+              <FeedBack />
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>

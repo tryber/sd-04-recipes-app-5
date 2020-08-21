@@ -1,72 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import copy from 'clipboard-copy';
+import React, { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import AppReceitaContext from '../context/AppReceitaContext';
-import shareIcon from '../images/shareIcon.svg';
 import CardDoneRecipe from '../components/CardDoneRecipe';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 
-const handleShare = (type, id, setIsShow) => {
-  copy(`http://localhost:3000/${type}/${id}`);
-  setIsShow(false);
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-}));
-
-const doneDrink = (recipe, isShow, setIsShow, index) => {
-  const { id, name, image, doneDate, alcoholicOrNot } = recipe;
-  const isFood = false;
+const doneDrink = (recipe) => {
   return (
     <div>
       <CardDoneRecipe recipe={recipe}/>
-      {isShow ? (
-        <button onClick={() => handleShare('bebidas', id, setIsShow)}>
-          <img
-            data-testid={`${index}-horizontal-share-btn`}
-            src={shareIcon}
-            alt="icone que eu nao tinha visto"
-          />
-        </button>
-      ) : (
-        <p>Link copiado!</p>
-      )}
+      <p></p>
     </div>
   );
 };
 
-const doneFood = (recipe, isShow, setIsShow, index) => {
-  const { id } = recipe;
-
+const doneFood = (recipe) => {
   return (
     <div className="doneFoods">
       <CardDoneRecipe recipe={recipe}/>
-      
-      {isShow ? (
-        <button onClick={() => handleShare('comidas', id, setIsShow)}>
-          <img
-            data-testid={`${index}-horizontal-share-btn`}
-            src={shareIcon}
-            alt="outro icone"
-          />
-        </button>
-      ) : (
-        <p>Link copiado!</p>
-      )}
+      <p></p>
     </div>
   );
 };
 
 function DoneRecipes() {
-  const [isShow, setIsShow] = useState(true);
   const { doneRecipes, setDoneRecipes } = useContext(AppReceitaContext);
-
-  const classes = useStyles();
 
   const all = JSON.parse(localStorage.getItem('doneRecipes'));
   const food = all && all.filter((recipe) => recipe.type === 'comida');
@@ -102,8 +58,8 @@ function DoneRecipes() {
           {doneRecipes &&
           doneRecipes.map((recipe, index) =>
             recipe.type === 'comida'
-              ? doneFood(recipe, isShow, setIsShow, index)
-              : doneDrink(recipe, isShow, setIsShow, index)
+              ? doneFood(recipe, index)
+              : doneDrink(recipe, index)
           )}
         </div>
       </div>

@@ -4,27 +4,27 @@ import copy from 'clipboard-copy';
 import Header from '../components/Header';
 import AppReceitaContext from '../context/AppReceitaContext';
 import shareIcon from '../images/shareIcon.svg';
+import CardDoneRecipe from '../components/CardDoneRecipe';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 
 const handleShare = (type, id, setIsShow) => {
   copy(`http://localhost:3000/${type}/${id}`);
   setIsShow(false);
 };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}));
+
 const doneDrink = (recipe, isShow, setIsShow, index) => {
   const { id, name, image, doneDate, alcoholicOrNot } = recipe;
-
+  const isFood = false;
   return (
     <div>
-      <Link to={`/bebidas/${id}`}>
-        <img
-          src={image}
-          alt="quando clicar na bebida"
-          data-testid={`${index}-horizontal-image`}
-        />
-        <p data-testid={`${index}-horizontal-name`}>{name}</p>
-      </Link>
-      <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
-      <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
+      <CardDoneRecipe recipe={recipe}/>
       {isShow ? (
         <button onClick={() => handleShare('bebidas', id, setIsShow)}>
           <img
@@ -41,27 +41,12 @@ const doneDrink = (recipe, isShow, setIsShow, index) => {
 };
 
 const doneFood = (recipe, isShow, setIsShow, index) => {
-  const { id, area, category, name, image, doneDate, tags } = recipe;
+  const { id } = recipe;
 
   return (
     <div className="doneFoods">
-      <Link to={`/comidas/${id}`}>
-        <img
-          src={image}
-          alt="quando clicar na comida"
-          data-testid={`${index}-horizontal-image`}
-        />
-        <p data-testid={`${index}-horizontal-name`}>{name}</p>
-      </Link>
-      <p data-testid={`${index}-horizontal-top-text`}>
-        {area} - {category}
-      </p>
-      <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
-      <p>
-        {tags.slice(0, 2).map((tag) => (
-          <span data-testid={`${index}-${tag}-horizontal-tag`}>{tag}</span>
-        ))}
-      </p>
+      <CardDoneRecipe recipe={recipe}/>
+      
       {isShow ? (
         <button onClick={() => handleShare('comidas', id, setIsShow)}>
           <img
@@ -80,6 +65,8 @@ const doneFood = (recipe, isShow, setIsShow, index) => {
 function DoneRecipes() {
   const [isShow, setIsShow] = useState(true);
   const { doneRecipes, setDoneRecipes } = useContext(AppReceitaContext);
+
+  const classes = useStyles();
 
   const all = JSON.parse(localStorage.getItem('doneRecipes'));
   const food = all && all.filter((recipe) => recipe.type === 'comida');
@@ -110,12 +97,16 @@ function DoneRecipes() {
       >
         All
       </button>
-      { doneRecipes && doneRecipes.map((recipe, index) => (
-        recipe.type === 'comida'
-          ? doneFood(recipe, isShow, setIsShow, index)
-          : doneDrink(recipe, isShow, setIsShow, index)
-      ),
-      )}
+      <div class="container">
+        <div class="row">
+          {doneRecipes &&
+          doneRecipes.map((recipe, index) =>
+            recipe.type === 'comida'
+              ? doneFood(recipe, isShow, setIsShow, index)
+              : doneDrink(recipe, isShow, setIsShow, index)
+          )}
+        </div>
+      </div>
     </div>
   );
 }

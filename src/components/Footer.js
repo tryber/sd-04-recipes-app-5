@@ -7,32 +7,28 @@ import mealIcon from '../images/mealIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 
 function Footer() {
+  const rotas = ['bebidas', 'comidas', 'explorar'];
+  const dataTestId = ['drinks', 'food', 'explore'];
+  const iconArr = [drinkIcon, mealIcon, exploreIcon];
+
   return (
-    <div>
-      <footer className="footer" data-testid="footer">
-        <Link to="/bebidas">
-          <img
-            src={drinkIcon}
-            data-testid="drinks-bottom-btn"
-            alt="Icone de Bebida"
-          />
-        </Link>
-        <Link to="/comidas">
-          <img
-            src={mealIcon}
-            data-testid="food-bottom-btn"
-            alt="Icone de Comida"
-          />
-        </Link>
-        <Link to="/explorar">
-          <img
-            src={exploreIcon}
-            data-testid="explore-bottom-btn"
-            alt="Icone de Explorar"
-          />
-        </Link>
-      </footer>
-    </div>
+    <footer className="footer" data-testid="footer">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="col">
+            {rotas.map((rota, index) => (
+              <Link to={`/${rota}`}>
+                <img
+                  src={iconArr[index]}
+                  data-testid={`${dataTestId[index]}-bottom-btn`}
+                  alt="Icones gerais"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

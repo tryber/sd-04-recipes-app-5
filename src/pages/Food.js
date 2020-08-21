@@ -1,63 +1,85 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 import Footer from '../components/Footer';
 import useFoods from '../hooks/useFoods';
 import Header from '../components/Header';
 
-function foodCard(dataFood) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 500,
+    height: 700,
+  },
+}));
+
+function foodCard(dataFood, classes) {
   return (
-    <div className="container">
-      <div className="row row-cols-2">
+    <div className={classes.root}>
+      <GridList cellHeight={200} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <ListSubheader component="div">!ComidasFeias.com</ListSubheader>
+        </GridListTile>
         {dataFood.slice(0, 12).map((food, index) => (
-          <div key={food.idMeal} data-testid={`${index}-recipe-card`} className="col">
+          <GridListTile key={food.idMeal} data-testid={`${index}-recipe-card`}>
             <Link to={`/comidas/${food.idMeal}`}>
-              <div className="card" style={{ width: '18rem' }}>
-                <img
-                  src={food.strMealThumb}
-                  data-testid={`${index}-card-img`}
-                  className="card-img-top"
-                  alt="Meal"
-                />
-                <div className="card-body">
-                  <p className="card-text" data-testid={`${index}-card-name`}>
-                    {food.strMeal}
-                  </p>
-                </div>
-              </div>
+              <img
+                src={food.strMealThumb}
+                data-testid={`${index}-card-img`}
+                className="card-img-top"
+                alt="Meal"
+              />
+              <GridListTileBar title={food.strMeal} />
             </Link>
-          </div>
+          </GridListTile>
         ))}
-      </div>
+      </GridList>
     </div>
   );
 }
 
 function Food() {
   const { dataFood, category, getFoodByCategory } = useFoods();
-  console.log('food', dataFood);
-  const fiveCategories = category.slice(0, 5);
+  const categories = [{ strCategory: 'All' }, ...category.slice(0, 5)];
+
+  const classes = useStyles();
 
   if (!dataFood) return <p> Loading... </p>;
 
   return (
-    <div className="foodPage">
+    <div className="foodpage">
       <Header recipeType="Comidas" />
-      <div className="BotoesCategories">
-        <button data-testid="All-category-filter" onClick={() => getFoodByCategory('All')}>
-          All
-        </button>
-        {fiveCategories.map((categoria) => (
-          <div key={categoria.strCategory} className="categoria">
-            <button
-              data-testid={`${categoria.strCategory}-category-filter`}
-              onClick={() => getFoodByCategory(categoria.strCategory)}
-            >
-              {categoria.strCategory}
-            </button>
+      <Grid container spacing={0}>
+        {categories.map((categoria) => (
+          <div key={categoria.strCategory}>
+            <Grid item xs>
+              <Button
+                variant="contained"
+                color="secondary"
+                data-testid={`${categoria.strCategory}-category-filter`}
+                onClick={() => getFoodByCategory(categoria.strCategory)}
+              >
+                {categoria.strCategory}
+              </Button>
+            </Grid>
           </div>
         ))}
-      </div>
-      {foodCard(dataFood)}
+      </Grid>
+      {foodCard(dataFood, classes)}
       <div className="Footer">
         <Footer />
       </div>
